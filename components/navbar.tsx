@@ -1,21 +1,11 @@
 "use client";
 import Image from "next/image";
 import logo from "../public/assets/logos.png";
-import {
-  Navbar as HeroUINavbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-} from "@heroui/navbar";
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
 
 export const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   const navLinks = [
@@ -26,9 +16,9 @@ export const Navbar = () => {
     { label: "Contact", href: "#contact" },
   ];
 
+  // Smooth scroll on click
   const handleScroll = (e: any, href: any) => {
     e.preventDefault();
-    setMenuOpen(false);
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
@@ -37,12 +27,35 @@ export const Navbar = () => {
     }
   };
 
+  // Scroll listener to update active section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.6, // More than 60% of section in view
+      }
+    );
+
+    navLinks.forEach((link) => {
+      const section = document.getElementById(link.href.replace("#", ""));
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="h-[9vh] bg-transparent w-full">
+    <div className="h-[9vh] bg-transparent w-full fixed top-0 z-50">
       <div className="w-screen h-full bg-transparent">
-        <div className="w-full h-full  px-4 md:px-8 flex items-center">
+        <div className="w-full h-full px-4 md:px-8 flex items-center">
           {/* Left - Logo */}
-          <div className="">
+          <div>
             <a
               href="#home"
               onClick={(e) => handleScroll(e, "#home")}
@@ -69,7 +82,7 @@ export const Navbar = () => {
                 className={clsx(
                   "font-medium text-xs lg:text-sm px-3 py-1 rounded-full transition-all duration-300",
                   activeSection === item.href.replace("#", "")
-                    ? "bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-md"
+                    ? " bg-gray-800 backdrop-blur-md text-white shadow-md  "
                     : "text-white bg-transparent hover:bg-white/10"
                 )}
               >
@@ -79,34 +92,32 @@ export const Navbar = () => {
           </div>
 
           {/* Right - Social icons */}
-          <div className="ml-auto hidden md:flex gap-5">
+          <div className="ml-auto flex md:flex gap-5">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/Sivabalan-19"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#6e5494]  transition"
+              className="text-white md:text-white hover:text-[#6e5494] transition"
             >
               <FaGithub className="text-[1.7rem]" />
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/sivabalan1906/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#0A66C2] transition"
+              className="text-[#0A66C2] md:text-white hover:text-[#0A66C2]  transition"
             >
-              <FaLinkedin className="text-[1.7rem]"  />
+              <FaLinkedin className="text-[1.7rem]" />
             </a>
             <a
-              href="https://leetcode.com/yourusername"
+              href="https://leetcode.com/u/Sivabalan_1906/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#FFA116] transition"
+              className="text-[#FFA116] md:text-white hover:text-[#FFA116]  transition"
             >
-              <FaCode className="text-[1.7rem]"  />
+              <FaCode className="text-[1.7rem]" />
             </a>
           </div>
-
-          {/* Mobile Toggle Hidden */}
         </div>
       </div>
     </div>
