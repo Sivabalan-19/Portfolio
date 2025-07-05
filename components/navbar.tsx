@@ -12,117 +12,103 @@ import {
 } from "@heroui/navbar";
 import clsx from "clsx";
 import { useState } from "react";
-import { Logo } from "@/components/icons";
+import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const navLinks = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Project", href: "#project" },
     { label: "Resume", href: "#resume" },
-    { label: "Contact", href: "#contact" }, // You need to add this section or remove link
+    { label: "Contact", href: "#contact" },
   ];
 
   const handleScroll = (e: any, href: any) => {
     e.preventDefault();
-    setMenuOpen(false); // close mobile menu if open
+    setMenuOpen(false);
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id);
     }
   };
 
   return (
-    <HeroUINavbar
-      maxWidth="xl"
-      // className="text-[#B13BFF]  backdrop-blur-md bg-white/5 border-b border-white/15 shadow-xl"
-      className=" text-[#B13BFF] bg-transparent"
-      // style={{
-      //   background:
-      //     "linear-gradient(135deg, rgba(177, 59, 255, 0.08) 0%, rgba(71, 19, 150, 0.12) 50%, rgba(9, 0, 64, 0.15) 100%)",
-      //   backdropFilter: "blur(25px)",
-      //   WebkitBackdropFilter: "blur(25px)",
-      // }}
-    >
-      {/* Left Content - Logo/Brand */}
-      <NavbarContent justify="start">
-        <NavbarBrand as="li" className="gap-2 max-w-fit">
-          <a
-            href="#home"
-            onClick={(e) => handleScroll(e, "#home")}
-            className="flex justify-start items-center gap-2"
-          >
-            {/* <Logo className="text-white" /> */}
-            <Image
-              src={logo}
-              alt="About Developer"
-              width={50}
-              height={50}
-              priority
-            />
-          </a>
-        </NavbarBrand>
-      </NavbarContent>
-
-      {/* Right Content - Desktop Navigation */}
-      <NavbarContent className="hidden md:flex gap-8" justify="end">
-        {navLinks.map((item, index) => (
-          <NavbarItem key={`${item.href}-${index}`}>
+    <div className="h-[9vh] bg-transparent w-full">
+      <div className="w-screen h-full bg-transparent">
+        <div className="w-full h-full  px-4 md:px-8 flex items-center">
+          {/* Left - Logo */}
+          <div className="">
             <a
-              href={item.href}
-              onClick={(e) => handleScroll(e, item.href)}
-              className={clsx(
-                "relative text-white font-medium text-sm lg:text-base px-2 py-2 transition-all duration-300 hover:text-[#B13BFF]",
-                "before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-0.5",
-                "before:bg-gradient-to-r before:from-[#B13BFF] before:to-[#4713FF] before:transition-all before:duration-300",
-                "hover:before:w-full"
-              )}
+              href="#home"
+              onClick={(e) => handleScroll(e, "#home")}
+              className="flex items-center pl-6 gap-2"
             >
-              {item.label}
+              <Image
+                src={logo}
+                alt="Logo"
+                width={45}
+                height={45}
+                priority
+                className="rounded-full"
+              />
             </a>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+          </div>
 
-      {/* Mobile Right Content */}
-      <NavbarContent className="md:hidden" justify="end">
-        <NavbarMenuToggle
-          className="text-[#B13BFF] hover:bg-white/8 hover:backdrop-blur-sm transition-all duration-300 rounded-lg p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-expanded={menuOpen}
-          aria-label="Toggle menu"
-        />
-      </NavbarContent>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <NavbarMenu
-          className="text-[#B13BFF] min-h-[50vh] max-h-[52vh] top-0 backdrop-blur-md border-b border-white/15 shadow-xl overflow-y-auto"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(177, 59, 255, 0.1) 0%, rgba(71, 19, 150, 0.15) 50%, rgba(9, 0, 64, 0.2) 100%)",
-            backdropFilter: "blur(25px)",
-            WebkitBackdropFilter: "blur(25px)",
-          }}
-        >
-          <div className="mx-4 mt-4 flex flex-col gap-3 pb-4">
+          {/* Center - Nav items (Desktop only) */}
+          <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center gap-4 rounded-full px-2.5 py-2.5 bg-transparent backdrop-blur-lg border border-white/20 shadow-md">
             {navLinks.map((item, index) => (
-              <NavbarMenuItem key={`mobile-${item.href}-${index}`}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleScroll(e, item.href)}
-                  className="relative text-[#B13BFF] font-medium px-4 py-3 rounded-lg block transition-all duration-300 hover:text-white hover:bg-white/8 hover:backdrop-blur-sm hover:shadow-lg"
-                >
-                  {item.label}
-                </a>
-              </NavbarMenuItem>
+              <a
+                key={`${item.href}-${index}`}
+                href={item.href}
+                onClick={(e) => handleScroll(e, item.href)}
+                className={clsx(
+                  "font-medium text-xs lg:text-sm px-3 py-1 rounded-full transition-all duration-300",
+                  activeSection === item.href.replace("#", "")
+                    ? "bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-md"
+                    : "text-white bg-transparent hover:bg-white/10"
+                )}
+              >
+                {item.label}
+              </a>
             ))}
           </div>
-        </NavbarMenu>
-      )}
-    </HeroUINavbar>
+
+          {/* Right - Social icons */}
+          <div className="ml-auto hidden md:flex gap-5">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#6e5494]  transition"
+            >
+              <FaGithub className="text-[1.7rem]" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#0A66C2] transition"
+            >
+              <FaLinkedin className="text-[1.7rem]"  />
+            </a>
+            <a
+              href="https://leetcode.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#FFA116] transition"
+            >
+              <FaCode className="text-[1.7rem]"  />
+            </a>
+          </div>
+
+          {/* Mobile Toggle Hidden */}
+        </div>
+      </div>
+    </div>
   );
 };
