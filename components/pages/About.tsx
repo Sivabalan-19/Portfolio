@@ -128,7 +128,7 @@ function About() {
 
   return (
     <div className="h-full">
-      <div className="w-full pt-[2.1rem] flex justify-center text-[2rem]">
+      <div className="w-full  flex justify-center text-[2rem]">
         Know Who&nbsp;<strong className="text-[#cd5ff8]"> I'M</strong>
       </div>
       <div className="py-[5.2rem] w-[55rem] flex items-center justify-between">
