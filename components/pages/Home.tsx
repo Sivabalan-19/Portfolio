@@ -15,10 +15,10 @@ function Homes() {
           </h1>
           {/* Fixed name: not animated */}
           <h1 className="text-[2.5em] pl-[40px]">
-            I'M <strong className="text-[#cd5ff8]">SIVA BALAN</strong>
+            I'M <strong className="text-[#3dcf91]">SIVA BALAN</strong>
           </h1>
           {/* Only this part animates */}
-          <div className="p-2 text-[2rem] mb-7 h-[20px] md:pt-[50px] text-[2em] text-[#cd5ff8]  pl-[45px]">
+          <div className="p-2 text-[2rem] mb-7 h-[20px] md:pt-[50px] text-[2em] text-[#3dcf91]  pl-[45px]">
             <Typewriter
               options={{
                 strings: [

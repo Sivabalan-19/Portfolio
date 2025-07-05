@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../public/assets/logos.png";
+import logo from "../public/assets/logo.png";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";

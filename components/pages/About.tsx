@@ -129,11 +129,11 @@ function About() {
   return (
     <div className="h-full">
       <div className="w-full  flex justify-center text-[2rem]">
-        Know Who&nbsp;<strong className="text-[#cd5ff8]"> I'M</strong>
+        Know Who&nbsp;<strong className="text-[#3dcf91]"> I'M</strong>
       </div>
       <div className="py-[5.2rem] w-[55rem] flex items-center justify-between">
         <div className="w-full text-justify md:pl-[4rem] pr-[4rem] text-[1.4rem] text-justify">
-          Hi! I'm <strong className="text-[#cd5ff8]">Sivabalan</strong>, a
+          Hi! I'm <strong className="text-[#3dcf91]">Sivabalan</strong>, a
           front-end developer with a passion for creating user-friendly
           websites. My passion for web development motivates me to expand my
           knowledge and turn complex challenges into solutions. My ultimate goal
@@ -148,7 +148,7 @@ function About() {
         <div>hioi</div>
       </div>
       <div className="w-full text-center text-[2.1rem]">
-        What I <strong className="text-[#cd5ff8]">Work</strong> With
+        What I <strong className="text-[#3dcf91]">Work</strong> With
       </div>
 
       <div className="w-full flex flex-col items-center py-5 gap-4">
