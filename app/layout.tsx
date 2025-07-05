@@ -7,6 +7,7 @@ import { BackgroundBeams } from "../components/ui/background-beams";
 import "../styles/globals.css";
 import { Navbar } from "@/components/navbar";
 import { RetroGrid } from "@/components/magicui/retro-grid";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 const VantaBackground = dynamic(() => import("../components/back"), {
   ssr: false,
 });
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body className="h-screen w-screen overflow-hidden bg-black  items-center justify-center">
+      <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
         <>
           <AnimatedGridPattern
             duration={1}
@@ -42,9 +43,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* <BackgroundBeams /> */}
           {/* <VantaBackground /> */}
           {/* <RetroGrid /> */}
+          {/* <ScrollProgress className="top-[65px]" /> */}
 
-          <div className="h-[9vh]">
-            <Navbar /> 
+          <div className="h-[9vh] bg-transparent">
+            <Navbar />
           </div>
 
           <div className="h-[91vh] overflow-y-scroll">{children}</div>

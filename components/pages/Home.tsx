@@ -2,7 +2,7 @@
 import Typewriter from "typewriter-effect";
 import Image from "next/image";
 import image from "../../public/assets/image.png";
-function Homes({ sub }) {
+function Homes() {
   return (
     <div className="h-full mb-3 flex">
       <div className="h-full w-[53rem] flex items-center justify-center">

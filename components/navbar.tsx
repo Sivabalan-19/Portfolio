@@ -38,13 +38,14 @@ export const Navbar = () => {
   return (
     <HeroUINavbar
       maxWidth="xl"
-      className="text-[#B13BFF]  backdrop-blur-md bg-white/5 border-b border-white/15 shadow-xl"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(177, 59, 255, 0.08) 0%, rgba(71, 19, 150, 0.12) 50%, rgba(9, 0, 64, 0.15) 100%)",
-        backdropFilter: "blur(25px)",
-        WebkitBackdropFilter: "blur(25px)",
-      }}
+      // className="text-[#B13BFF]  backdrop-blur-md bg-white/5 border-b border-white/15 shadow-xl"
+      className=" text-[#B13BFF] bg-transparent"
+      // style={{
+      //   background:
+      //     "linear-gradient(135deg, rgba(177, 59, 255, 0.08) 0%, rgba(71, 19, 150, 0.12) 50%, rgba(9, 0, 64, 0.15) 100%)",
+      //   backdropFilter: "blur(25px)",
+      //   WebkitBackdropFilter: "blur(25px)",
+      // }}
     >
       {/* Left Content - Logo/Brand */}
       <NavbarContent justify="start">
