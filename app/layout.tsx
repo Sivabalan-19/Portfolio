@@ -29,6 +29,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
+      <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
+        <>
+
           <AnimatedGridPattern
             duration={1}
             width={30}
@@ -37,9 +40,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             repeatDelay={1}
             maxOpacity={0.25}
           />
-      <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
-        <>
-
           {/* <BackgroundBeams /> */}
           {/* <VantaBackground /> */}
           {/* <RetroGrid /> */}

@@ -1,41 +1,49 @@
-import React from "react";
-import Typewriter from "typewriter-effect";
+"use client";
 
-function Type() {
+import { useEffect, useRef } from "react";
+
+export default function Typing() {
+  const typedRef = useRef(null);
+
+  useEffect(() => {
+    const text = "Sivabalan";
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const type = () => {
+      const el = typedRef.current;
+      if (!el) return;
+
+      if (isDeleting) {
+        charIndex--;
+        el.textContent = text.slice(0, charIndex);
+      } else {
+        charIndex++;
+        el.textContent = text.slice(0, charIndex);
+      }
+
+      // if (!isDeleting && charIndex === text.length) {
+      //   setTimeout(() => {
+      //     isDeleting = true;
+      //     type();
+      //   }, 1000); // wait before deleting
+      //   return;
+      // }
+
+      // if (isDeleting && charIndex === 0) {
+      //   isDeleting = false;
+      // }
+
+      setTimeout(type, 120);
+    };
+
+    type();
+  }, []);
+
   return (
-    <div style={{ color: "#87ceeb", display: "flex", fontSize: "1rem" }}>
-      hii{" "}
-      <div className="home-header">
-        {/* <h1 style={{ paddingBottom: 15 }} className="heading">
-          Hi There!{" "}
-          <span className="wave" role="img" aria-labelledby="wave">
-            👋🏻
-          </span>
-        </h1>
-
-        <h1 className="heading-name">
-          I'M
-          <strong className="main-name"> SOUMYAJIT BEHERA</strong>
-        </h1> */}
-
-        {/* <div style={{ padding: 50, textAlign: "left" }}>
-          <Typewriter
-            options={{
-              strings: [
-                "Software Developer",
-                "Freelancer",
-                "MERN Stack Developer",
-                "Open Source Contributor",
-              ],
-              autoStart: true,
-              loop: true,
-              deleteSpeed: 50,
-            }}
-          />
-        </div> */}
-      </div>
+    <div className="flex items-center font-serif  pl-[3.4rem] text-[2.5rem] sm:text-[3.5rem]  md:text-[4.5rem] lg:text-[7.2rem]  text-gray-200 font-bold">
+      <span ref={typedRef}></span>
+      <span className="animate-blink">|</span>
     </div>
   );
 }
-
-export default Type;
