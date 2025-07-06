@@ -12,7 +12,6 @@ export const Navbar = () => {
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Project", href: "#project" },
-    { label: "Resume", href: "#resume" },
     { label: "Contact", href: "#contact" },
   ];
 

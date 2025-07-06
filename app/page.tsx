@@ -2,25 +2,39 @@
 
 import About from "@/components/pages/About";
 import Homes from "../components/pages/Home";
-
+import Contact from "@/components/pages/Contact";
+import { ToastContainer, toast } from "react-toastify";
 export default function Home() {
   return (
     <div className="text-white h-full">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark" // Optional: use "light", "dark", or "colored"
+      />
+
       <section id="home" className="h-full">
         <Homes />
       </section>
 
-      <section id="about" className="h-full">
+      <section id="about" className="">
         <About />
       </section>
 
-      {/*  <section id="project" className="h-full">
-        <Homes sub={"Project"}/>
-      </section>
+      {/* <section id="project" className="h-full">
+        <Contact />
+      </section> */}
 
       <section id="resume" className="h-full">
-        <Homes sub={"resu"}/>
-      </section> */}
+        <Contact />
+      </section>
     </div>
   );
 }

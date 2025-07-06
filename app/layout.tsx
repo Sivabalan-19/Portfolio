@@ -31,7 +31,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
         <>
-
           <AnimatedGridPattern
             duration={1}
             width={30}
