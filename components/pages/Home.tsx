@@ -47,7 +47,7 @@ function Homes() {
             <div className="flex  items-center sm:items-start justify-center sm:justify-start gap-4 pb-10">
               <a
                 href="mailto:pmsiva.1906@gmail.com"
-                className="inline-flex items-center gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(61,207,145,0.15)] font-bold text-white text-[15px] rounded-[10px] px-8 py-[12px] min-w-[140px] justify-center transition-colors duration-300"
+                className="inline-flex items-center gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[15px] rounded-[10px] px-8 py-[12px] min-w-[140px] justify-center transition-colors duration-300"
                 target="_blank"
                 rel="noopener noreferrer"
               >
