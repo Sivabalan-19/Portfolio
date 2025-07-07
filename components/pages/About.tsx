@@ -1,10 +1,7 @@
 "use client";
 
 import { languages, tools } from "../../app/json/index";
-import Image from "next/image";
 import { InfiniteSkillScroller } from "../ui/infinite-moving-cards";
-import { LinkPreview } from "../ui/link-preview";
-import Crayond from "../../public/assets/crayon.png";
 
 function About() {
   return (

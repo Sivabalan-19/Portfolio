@@ -1,14 +1,7 @@
 "use client";
-import { TbMailFilled } from "react-icons/tb";
-import { FaFile } from "react-icons/fa";
 
-import Image from "next/image";
-import { Mail, FileText } from "lucide-react";
-import image from "../../public/assets/image.png";
-import { TypingAnimation } from "../../components/magicui/typing-animation";
-import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { FileText, Mail } from "lucide-react";
 
-import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
 import Typing from "../Type/Type";
 function Homes() {
   const words = [
@@ -36,7 +29,6 @@ function Homes() {
           <h3 className="font-bold text-sm sm:text-[1.2rem] text-[rgba(204,204,204,0.65)] uppercase tracking-wide mb-6 text-center sm:text-left">
             I am a <span className="text-white">Front End Developer</span>
             <br className="hidden sm:block" />
-            
           </h3>
 
           <div className="mt-4 text-center sm:text-left">

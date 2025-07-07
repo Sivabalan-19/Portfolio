@@ -1,15 +1,11 @@
 "use client";
 
-import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
-import dynamic from "next/dynamic";
-import { ReactNode, useEffect, useState } from "react";
-import { BackgroundBeams } from "../components/ui/background-beams";
-import "../styles/globals.css";
 import { Navbar } from "@/components/navbar";
-import { RetroGrid } from "@/components/magicui/retro-grid";
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
+import dynamic from "next/dynamic";
+import { ReactNode, useEffect, useState } from "react";
+import "../styles/globals.css";
 const VantaBackground = dynamic(() => import("../components/back"), {
   ssr: false,
 });

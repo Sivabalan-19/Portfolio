@@ -3,21 +3,20 @@
 import emailjs from "@emailjs/browser";
 import { Input, Textarea } from "@heroui/input";
 import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
+import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
-import { GitHubIcon, LinkedInIcon } from "../icons";
-import Image from "next/image";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { toast } from "react-toastify";
-import photo from "../../public/assets/image.png";
 import "react-toastify/dist/ReactToastify.css";
+import photo from "../../public/assets/image.png";
+import { GitHubIcon, LinkedInIcon } from "../icons";
 
 function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -145,8 +144,7 @@ function Contact() {
       <div className="mt-5  lg:mt-0">
         <div className="border flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] ">
           <p className=" lg:text-[1.8rem] text-lg font-thin ">
-            You can also hit me up in 
-            any of this places 👋🏻
+            You can also hit me up in any of this places 👋🏻
           </p>
           <div className="flex gap-5 pt-6 lg:pt-12">
             <a
@@ -202,8 +200,8 @@ function Contact() {
             <Image
               src={photo}
               alt="not visible"
-              fill 
-              style={{ objectFit: "cover" }} 
+              fill
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>

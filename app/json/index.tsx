@@ -3,6 +3,7 @@ import { DiVisualstudio } from "react-icons/di";
 import {
   FaGitAlt,
   FaGithub,
+  FaJava,
   FaNodeJs,
   FaPython,
   FaReact,
@@ -20,7 +21,6 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
 import photo from "../../public/assets/project.png";
 
 export const languages = [
