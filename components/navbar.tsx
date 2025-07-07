@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
-import logo from "../public/assets/logo.png";
 import clsx from "clsx";
-import { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { FaCode, FaGithub, FaLinkedin } from "react-icons/fa";
+import logo from "../public/assets/logo.png";
 
 export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");

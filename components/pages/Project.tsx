@@ -1,8 +1,7 @@
 "use client";
 
+import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { Github, ExternalLink } from "lucide-react";
-import photo from "../../public/assets/project.png";
 import { projects } from "../../app/json/index";
 
 // interface Project {
@@ -18,7 +17,7 @@ import { projects } from "../../app/json/index";
 //   project: Project;
 // }
 
-function ProjectCard({ project }:{project:any}) {
+function ProjectCard({ project }: { project: any }) {
   return (
     <div className="border border-white/50 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all flex flex-col">
       {/* Project image */}
@@ -41,7 +40,7 @@ function ProjectCard({ project }:{project:any}) {
 
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
-          {project.stacksUsed.map((tech:any, i:any) => (
+          {project.stacksUsed.map((tech: any, i: any) => (
             <span
               key={i}
               className="text-xs bg-[#3dcf91]/10 text-[#3dcf91] border border-[#3dcf91] px-3 py-1 rounded-lg font-medium"

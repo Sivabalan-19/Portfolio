@@ -1,13 +1,12 @@
 "use client";
-
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  RefObject,
-} from "react";
 import { cn } from "@/lib/utils";
+import React, {
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 /* --- StarsBackground Component --- */
 

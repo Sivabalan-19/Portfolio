@@ -1,8 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { HTMLMotionProps } from "motion/react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, HTMLMotionProps, motion } from "motion/react";
 import React, { useState } from "react";
 
 interface AnimatedSubscribeButtonProps
@@ -18,18 +17,18 @@ export const AnimatedSubscribeButton = React.forwardRef<
 >(
   (
     { subscribeStatus = false, onClick, className, children, ...props },
-    ref,
+    ref
   ) => {
     const [isSubscribed, setIsSubscribed] = useState<boolean>(subscribeStatus);
 
     if (
       React.Children.count(children) !== 2 ||
       !React.Children.toArray(children).every(
-        (child) => React.isValidElement(child) && child.type === "span",
+        (child) => React.isValidElement(child) && child.type === "span"
       )
     ) {
       throw new Error(
-        "AnimatedSubscribeButton expects two children, both of which must be <span> elements.",
+        "AnimatedSubscribeButton expects two children, both of which must be <span> elements."
       );
     }
 
@@ -44,7 +43,7 @@ export const AnimatedSubscribeButton = React.forwardRef<
             ref={ref}
             className={cn(
               "relative flex h-10 w-fit items-center justify-center overflow-hidden rounded-lg bg-primary px-6 text-primary-foreground",
-              className,
+              className
             )}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               setIsSubscribed(false);
@@ -69,7 +68,7 @@ export const AnimatedSubscribeButton = React.forwardRef<
             ref={ref}
             className={cn(
               "relative flex h-10 w-fit cursor-pointer items-center justify-center rounded-lg border-none bg-primary px-6 text-primary-foreground",
-              className,
+              className
             )}
             onClick={(e) => {
               setIsSubscribed(true);
@@ -92,7 +91,7 @@ export const AnimatedSubscribeButton = React.forwardRef<
         )}
       </AnimatePresence>
     );
-  },
+  }
 );
 
 AnimatedSubscribeButton.displayName = "AnimatedSubscribeButton";

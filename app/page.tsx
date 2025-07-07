@@ -1,10 +1,10 @@
 "use client";
 
 import About from "@/components/pages/About";
-import Homes from "../components/pages/Home";
 import Contact from "@/components/pages/Contact";
-import { ToastContainer, toast } from "react-toastify";
 import Project from "@/components/pages/Project";
+import { ToastContainer } from "react-toastify";
+import Homes from "../components/pages/Home";
 export default function Home() {
   return (
     <div className="text-white h-full">
@@ -23,13 +23,13 @@ export default function Home() {
 
       <section id="home" className="h-full">
         <Homes />
-      </section> 
+      </section>
 
       <section id="project">
         <Project />
       </section>
 
-       <section id="about" className="">
+      <section id="about" className="">
         <About />
       </section>
 
