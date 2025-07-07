@@ -46,14 +46,14 @@ function Contact() {
   };
 
   return (
-    <div className="h-full flex justify-start  gap-8 p-[5rem] font-mono ">
+    <div className="px-4  lg:flex justify-start  gap-8  lg:p-[5rem] font-mono ">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="border w-[40rem] bg-[#0b0b0b] flex flex-col rounded-[4rem] p-[2rem] justify-start h-[32rem]"
+        className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[4rem] p-[2rem] justify-start "
       >
         <h2 className="text-4xl whitespace-pre-line font-thin">Let's talk</h2>
-        <h6 className="text-[1rem] whitespace-pre-line font-light pt-3 text-gray-400">
+        <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400">
           I'm excited to apply my skills to your projects. Contact me to learn
           more about how I can contribute.
         </h6>
@@ -142,24 +142,24 @@ function Contact() {
         </div>
       </form>
 
-      <div className="w-[25rem] sm:w-[50rem] h-[32rem]">
-        <div className="border  w-[50rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem]  h-[16rem]">
-          <p className=" text-[1.8rem] font-thin  w-[50rem]  flex flex-col ">
-            You can also hit me up in <br />
+      <div className="mt-5  lg:mt-0">
+        <div className="border flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] ">
+          <p className=" lg:text-[1.8rem] text-lg font-thin ">
+            You can also hit me up in 
             any of this places 👋🏻
           </p>
-          <div className="flex gap-5 pt-12">
+          <div className="flex gap-5 pt-6 lg:pt-12">
             <a
               href="mailto:pmsiva.1906@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
             >
               <Mail size={22} className="text-white" />
             </a>
             <a
               href="tel:+91 9345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -167,7 +167,7 @@ function Contact() {
             </a>
             <a
               href="https://wa.me/919345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -176,29 +176,29 @@ function Contact() {
           </div>
         </div>
 
-        <div className="flex gap-[2rem]">
-          <div className="border  w-[35rem]  mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem]  h-[14rem]">
+        <div className="flex gap-[2rem] w-full">
+          <div className="border w-full lg:w-fit  mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] ">
             <p className="text-[24px]">Find me at:</p>
-            <div className="flex gap-8 size-full py-4">
+            <div className="flex gap-8 py-4">
               <a
                 href="https://www.linkedin.com/in/sivabalan1906/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[12rem] h-[7rem] duration-300 bg-[rgb(10,102,194)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(10,102,194)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
               >
-                <LinkedInIcon className="text-white text-[2rem] w-16 h-16" />
+                <LinkedInIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
               </a>
               <a
                 href="https://github.com/Sivabalan-19"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[12rem] h-[7rem] duration-300 bg-[rgb(1,4,9)]  transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)]  transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
               >
-                <GitHubIcon className="text-white text-[2rem] w-16 h-16" />
+                <GitHubIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
               </a>
             </div>
           </div>
-          <div className="border w-[13rem] h-[14rem] mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
+          <div className="border w-full hidden md:block lg:hidden xl:block mt-[2rem] bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
             <Image
               src={photo}
               alt="not visible"

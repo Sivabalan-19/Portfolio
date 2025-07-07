@@ -1,27 +1,27 @@
 // lib/data.js (or data/tech.js)
-import photo from '../../public/assets/project.png'
+import { DiVisualstudio } from "react-icons/di";
 import {
-  SiJavascript,
-  SiMysql,
+  FaGitAlt,
+  FaGithub,
+  FaNodeJs,
+  FaPython,
+  FaReact,
+  FaSlack,
+} from "react-icons/fa";
+import {
   SiC,
   SiCplusplus,
-  SiTailwindcss,
-  SiNextdotjs,
-  SiFirebase,
-  SiNotion,
   SiFigma,
+  SiJavascript,
+  SiMysql,
+  SiNextdotjs,
+  SiNotion,
   SiPostman,
+  SiTailwindcss,
+  SiVercel,
 } from "react-icons/si";
-import {
-  FaReact,
-  FaGitAlt,
-  FaPython,
-  FaNodeJs,
-  FaSlack,
-  FaGithub,
-} from "react-icons/fa";
-import { DiVisualstudio } from "react-icons/di";
-import { SiVercel } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import photo from "../../public/assets/project.png";
 
 export const languages = [
   {
@@ -59,6 +59,12 @@ export const languages = [
     icon: <SiC />,
     hover:
       "text-blue-400 lg:text-white lg:border-gray-500 hover:text-blue-400 hover:border-blue-400",
+  },
+  {
+    name: "Java",
+    icon: <FaJava />, // using react-icons
+    hover:
+      "text-orange-500 lg:text-white lg:border-gray-500 hover:text-orange-500 hover:border-orange-500",
   },
   {
     name: "C++",
@@ -122,12 +128,6 @@ export const tools = [
     icon: <SiFigma />,
     hover:
       "text-pink-500 lg:text-white lg:border-gray-500 hover:text-pink-500 hover:border-pink-500",
-  },
-  {
-    name: "Firebase",
-    icon: <SiFirebase />,
-    hover:
-      "text-yellow-400 lg:text-white lg:border-gray-500 hover:text-yellow-400 hover:border-yellow-400",
   },
   {
     name: "Notion",

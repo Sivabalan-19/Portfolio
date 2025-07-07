@@ -36,7 +36,7 @@ function Homes() {
           <h3 className="font-bold text-sm sm:text-[1.2rem] text-[rgba(204,204,204,0.65)] uppercase tracking-wide mb-6 text-center sm:text-left">
             I am a <span className="text-white">Front End Developer</span>
             <br className="hidden sm:block" />
-            based in Camarillo, Ca.
+            
           </h3>
 
           <div className="mt-4 text-center sm:text-left">

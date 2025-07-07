@@ -5,20 +5,20 @@ import { Github, ExternalLink } from "lucide-react";
 import photo from "../../public/assets/project.png";
 import { projects } from "../../app/json/index";
 
-interface Project {
-  projectName: string;
-  description: string;
-  stacksUsed: string[];
-  gitHubLink: string;
-  liveLink: string;
-  image: StaticImageData;
-}
+// interface Project {
+//   projectName: string;
+//   description: string;
+//   stacksUsed: string[];
+//   gitHubLink: string;
+//   liveLink: string;
+//   image: StaticImageData;
+// }
 
-interface ProjectCardProps {
-  project: Project;
-}
+// interface ProjectCardProps {
+//   project: Project;
+// }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project }:{project:any}) {
   return (
     <div className="border border-white/50 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all flex flex-col">
       {/* Project image */}
@@ -41,7 +41,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
-          {project.stacksUsed.map((tech, i) => (
+          {project.stacksUsed.map((tech:any, i:any) => (
             <span
               key={i}
               className="text-xs bg-[#3dcf91]/10 text-[#3dcf91] border border-[#3dcf91] px-3 py-1 rounded-lg font-medium"
@@ -77,7 +77,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 
 export default function ProjectsList() {
   return (
-    <section id="project" className="py-16 px-6 lg:px-20">
+    <div id="project" className="py-16 px-4 lg:px-20">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-gray-100 text-3xl font-bold mb-10 text-center">
           My <span className="text-[#3dcf91]">Projects</span>
@@ -88,6 +88,6 @@ export default function ProjectsList() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
