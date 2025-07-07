@@ -50,7 +50,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="h-[9vh] bg-transparent w-full fixed top-0 z-50">
+    <div className="h-full bg-transparent w-full top-0 z-50">
       <div className="w-screen h-full bg-transparent">
         <div className="w-full h-full px-4 md:px-8 flex items-center">
           {/* Left - Logo */}

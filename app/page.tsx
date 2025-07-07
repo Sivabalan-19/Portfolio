@@ -23,13 +23,13 @@ export default function Home() {
 
       <section id="home" className="h-full">
         <Homes />
-      </section>
+      </section> 
 
       <section id="project">
         <Project />
       </section>
 
-      <section id="about" className="">
+       <section id="about" className="">
         <About />
       </section>
 
