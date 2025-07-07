@@ -3,40 +3,24 @@
 import Image from "next/image";
 import { Github, ExternalLink } from "lucide-react";
 import photo from "../../public/assets/project.png";
+import { projects } from "../../app/json/index";
 
-const projects = [
-  {
-    projectName: "Portfolio Website",
-    description:
-      "A personal portfolio website to showcase my skills and projects.",
-    stacksUsed: ["React", "Tailwind CSS", "Next.js"],
-    gitHubLink: "https://github.com/username/portfolio-website",
-    liveLink: "https://username.github.io/portfolio-website",
-    image: photo,
-  },
-  {
-    projectName: "E-commerce Store",
-    description:
-      "An online store for electronics with shopping cart and payment integration.",
-    stacksUsed: ["React", "Node.js", "Express", "MongoDB"],
-    gitHubLink: "https://github.com/username/ecommerce-store",
-    liveLink: "https://ecommerce-store.example.com",
-    image: photo,
-  },
-  {
-    projectName: "Chat App",
-    description:
-      "A real-time chat application with rooms and private messaging.",
-    stacksUsed: ["React", "Socket.io", "Node.js"],
-    gitHubLink: "https://github.com/username/chat-app",
-    liveLink: "https://chat-app.example.com",
-    image: photo,
-  },
-];
+interface Project {
+  projectName: string;
+  description: string;
+  stacksUsed: string[];
+  gitHubLink: string;
+  liveLink: string;
+  image: StaticImageData;
+}
 
-function ProjectCard({ project }) {
+interface ProjectCardProps {
+  project: Project;
+}
+
+function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="border border-white/50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all flex flex-col">
+    <div className="border border-white/50 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all flex flex-col">
       {/* Project image */}
       <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden">
         <Image

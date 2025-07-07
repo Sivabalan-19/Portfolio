@@ -8,6 +8,8 @@ import "../styles/globals.css";
 import { Navbar } from "@/components/navbar";
 import { RetroGrid } from "@/components/magicui/retro-grid";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 const VantaBackground = dynamic(() => import("../components/back"), {
   ssr: false,
 });
@@ -31,14 +33,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
         <>
-          <AnimatedGridPattern
+          <ShootingStars />
+          <StarsBackground />
+
+          {/* <AnimatedGridPattern
             duration={1}
             width={30}
             numSquares={20}
             height={30}
             repeatDelay={1}
             maxOpacity={0.25}
-          />
+          /> */}
           {/* <BackgroundBeams /> */}
           {/* <VantaBackground /> */}
           {/* <RetroGrid /> */}
