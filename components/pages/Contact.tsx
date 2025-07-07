@@ -6,8 +6,10 @@ import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
 import { FormEvent, useRef, useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { GitHubIcon, LinkedInIcon } from "../icons";
+import Image from "next/image";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { toast } from "react-toastify";
+import photo from "../../public/assets/image.png";
 import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
@@ -15,6 +17,7 @@ function Contact() {
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -139,7 +142,7 @@ function Contact() {
         </div>
       </form>
 
-      <div className=" w-[50rem] h-[32rem]">
+      <div className="w-[25rem] sm:w-[50rem] h-[32rem]">
         <div className="border  w-[50rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem]  h-[16rem]">
           <p className=" text-[1.8rem] font-thin  w-[50rem]  flex flex-col ">
             You can also hit me up in <br />
@@ -173,25 +176,35 @@ function Contact() {
           </div>
         </div>
 
-        <div className="border  w-[35rem]  mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem]  h-[14rem]">
-          <p className="text-[24px]">Find me at:</p>
-          <div className="flex gap-8 size-full py-4">
-            <a
-              href="https://www.linkedin.com/in/sivabalan1906/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[12rem] h-[7rem] duration-300 bg-[rgb(10,102,194)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
-            >
-              <LinkedInIcon className="text-white text-[2rem] w-16 h-16" />
-            </a>
-            <a
-              href="https://github.com/Sivabalan-19"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[12rem] h-[7rem] duration-300 bg-[rgb(1,4,9)]  transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
-            >
-              <GitHubIcon className="text-white text-[2rem] w-16 h-16" />
-            </a>
+        <div className="flex gap-[2rem]">
+          <div className="border  w-[35rem]  mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem]  h-[14rem]">
+            <p className="text-[24px]">Find me at:</p>
+            <div className="flex gap-8 size-full py-4">
+              <a
+                href="https://www.linkedin.com/in/sivabalan1906/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[12rem] h-[7rem] duration-300 bg-[rgb(10,102,194)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+              >
+                <LinkedInIcon className="text-white text-[2rem] w-16 h-16" />
+              </a>
+              <a
+                href="https://github.com/Sivabalan-19"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[12rem] h-[7rem] duration-300 bg-[rgb(1,4,9)]  transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+              >
+                <GitHubIcon className="text-white text-[2rem] w-16 h-16" />
+              </a>
+            </div>
+          </div>
+          <div className="border w-[13rem] h-[14rem] mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
+            <Image
+              src={photo}
+              alt="not visible"
+              fill 
+              style={{ objectFit: "cover" }} 
+            />
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import About from "@/components/pages/About";
 import Homes from "../components/pages/Home";
 import Contact from "@/components/pages/Contact";
 import { ToastContainer, toast } from "react-toastify";
+import Project from "@/components/pages/Project";
 export default function Home() {
   return (
     <div className="text-white h-full">
@@ -24,15 +25,15 @@ export default function Home() {
         <Homes />
       </section>
 
+      <section id="project">
+        <Project />
+      </section>
+
       <section id="about" className="">
         <About />
       </section>
 
-      {/* <section id="project" className="h-full">
-        <Contact />
-      </section> */}
-
-      <section id="resume" className="h-full">
+      <section id="contact" className="h-full">
         <Contact />
       </section>
     </div>
