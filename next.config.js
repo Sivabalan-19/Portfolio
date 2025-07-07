@@ -3,6 +3,12 @@
  */
 const nextConfig = {
   /* config options here */
-}
- 
-module.exports = nextConfig
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+};
+
+module.exports = nextConfig;

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 export default function Typing() {
-  const typedRef = useRef(null);
+  const typedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const text = "Sivabalan";
