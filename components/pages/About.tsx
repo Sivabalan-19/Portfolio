@@ -102,7 +102,7 @@ function About() {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <div className="w-[200px] h-[200px] bg-gray-800 rounded-full flex items-center justify-center text-white text-4xl">
+          <div className="w-[200px] h-[200px] rounded-full flex items-center justify-center text-white text-4xl">
             <Image src={Crayond} alt="Crayon'd" />
           </div>
         </div>
