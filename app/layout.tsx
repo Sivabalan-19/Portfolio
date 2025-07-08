@@ -27,6 +27,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
+      <head>
+        <title>Sivabalan | Portfolio</title>
+      </head>
       <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
         <>
           <ShootingStars />
