@@ -41,7 +41,7 @@ export default function Typing() {
   }, []);
 
   return (
-    <div className="flex items-center font-serif  pl-[3.4rem] text-[2.5rem] sm:text-[3.5rem]  md:text-[4.5rem] lg:text-[7.2rem]  text-gray-200 font-bold">
+    <div className="flex items-center  pl-[3.4rem] text-[2.5rem] sm:text-[3.5rem]  md:text-[4.5rem] lg:text-[7.2rem]  text-gray-200 font-bold">
       <span ref={typedRef}></span>
       <span className="animate-blink">|</span>
     </div>

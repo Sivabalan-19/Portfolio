@@ -1,55 +1,75 @@
 "use client";
 
 import emailjs from "@emailjs/browser";
-import { Input, Textarea } from "@heroui/input";
 import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import photo from "../../public/assets/image.png";
 import { GitHubIcon, LinkedInIcon } from "../icons";
 
-function Contact() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSent, setIsSent] = useState(false);
+const Contact: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [isSent, setIsSent] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    if (isSent) return;
+    if (!formRef.current) return;
 
-    if (!email || !message) {
-      toast.error("Email and message are required");
-      return;
-    }
-
+    setIsLoading(true);
+    
     try {
       await emailjs.sendForm(
-        "service_dlgsppw",
-        "template_7o9zlq5",
-        formRef.current!,
-        "ZdnViU2mPuLEqMXzX"
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        }
       );
+
+      toast.success("Email sent successfully! 🎉", { position: "top-center" });
       setIsSent(true);
-      toast.success("Email sent successfully!");
       setEmail("");
+      setName("");
       setMessage("");
     } catch (error) {
-      toast.error("Failed to send email.");
-      console.error("EmailJS Error:", error);
+      console.error("FAILED...", error);
+      toast.error("Failed to send email. Try again later.", {
+        position: "top-center",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setName(e.target.value);
+  };
+
+  const handleMessageChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    setMessage(e.target.value);
+  };
+
   return (
-    <div className="px-4  lg:flex justify-start  gap-8  lg:p-[5rem] font-mono ">
+    <div className="px-4 lg:flex justify-start gap-8 lg:p-[5rem] font-mono">
       <form
         ref={formRef}
-        onSubmit={handleSubmit}
-        className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[4rem] p-[2rem] justify-start "
+        onSubmit={sendEmail}
+        className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
       >
         <h2 className="text-4xl whitespace-pre-line font-thin">Let's talk</h2>
         <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400">
@@ -57,76 +77,85 @@ function Contact() {
           more about how I can contribute.
         </h6>
 
-        <p className="pt-8 pb-2">
-          <span className="text-[#3dcf91]">const</span> email =
-        </p>
-        <Input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          radius="lg"
-          fullWidth
-          classNames={{
-            input: ["!text-white", "!placeholder-white/60", "bg-transparent"],
-            innerWrapper: "bg-transparent",
-            inputWrapper: [
-              "bg-[#2a2a2aa0]",
-              "text-white",
-              "shadow-xl",
-              "!cursor-text",
+        {/* Split layout for email and name */}
+        <div className="flex gap-4 pt-8">
+          <div className="w-1/2">
+            <p className="pb-2">
+              <span className="text-[#3dcf91]">const</span> email =
+            </p>
+            <input
+              type="email"
+              name="user_email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91]"
+              placeholder="Enter your email"
+            />
+          </div>
 
-              // 🔒 Lock background color across all states
-              "hover:bg-[#2a2a2aa0]",
-              "focus:bg-[#2a2a2aa0]",
-              "group-data-[hover=true]:bg-[#2a2a2aa0]",
-              "group-data-[focus=true]:bg-[#2a2a2aa0]",
-              "dark:hover:bg-[#2a2a2aa0]",
-              "dark:focus:bg-[#2a2a2aa0]",
-              "dark:group-data-[hover=true]:bg-[#2a2a2aa0]",
-              "dark:group-data-[focus=true]:bg-[#2a2a2aa0]",
-            ],
-          }}
-        />
+          <div className="w-1/2">
+            <p className="pb-2">
+              <span className="text-[#3dcf91]">const</span> name =
+            </p>
+            <input
+              type="text"
+              name="user_name"
+              value={name}
+              onChange={handleNameChange}
+              required
+              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] "
+              placeholder="Enter your name"
+            />
+          </div>
+        </div>
 
         <p className="pt-6 pb-2">
           <span className="text-[#3dcf91]">const</span> message =
         </p>
-        <Textarea
+        <textarea
+          name="message"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          minRows={6}
-          maxRows={10}
-          fullWidth
-          classNames={{
-            input: ["!text-white", "!placeholder-white/60", "bg-transparent"],
-            innerWrapper: "bg-transparent",
-            inputWrapper: [
-              "bg-[#2a2a2aa0]",
-              "text-white",
-              "shadow-xl",
-              "!cursor-text",
-
-              // 🔒 Lock background color for all states
-              "hover:bg-[#2a2a2aa0]",
-              "focus:bg-[#2a2a2aa0]",
-              "group-data-[hover=true]:bg-[#2a2a2aa0]",
-              "group-data-[focus=true]:bg-[#2a2a2aa0]",
-              "dark:hover:bg-[#2a2a2aa0]",
-              "dark:focus:bg-[#2a2a2aa0]",
-              "dark:group-data-[hover=true]:bg-[#2a2a2aa0]",
-              "dark:group-data-[focus=true]:bg-[#2a2a2aa0]",
-            ],
-          }}
+          onChange={handleMessageChange}
+          rows={6}
+          required
+          className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl resize-y min-h-[150px] max-h-[300px] transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91]"
+          placeholder="Enter your message"
         />
 
         <div className="w-full flex justify-end mt-6">
           <button
             type="submit"
-            disabled={isSent}
+            disabled={isSent || isLoading}
             className={`w-35 text-black rounded-[4rem] bg-white inline-flex items-center justify-center px-4 py-2 transition-all ${
-              isSent ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"
+              isSent || isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"
             }`}
           >
-            {isSent ? (
+            {isLoading ? (
+              <span className="inline-flex items-center">
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Sending...
+              </span>
+            ) : isSent ? (
               <span className="inline-flex items-center">
                 <CheckIcon className="mr-2 size-4" />
                 Email Sent
@@ -141,9 +170,9 @@ function Contact() {
         </div>
       </form>
 
-      <div className="mt-5  lg:mt-0">
-        <div className="border flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] ">
-          <p className=" lg:text-[1.8rem] text-lg font-thin ">
+      <div className="mt-5 lg:mt-0">
+        <div className="border flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
+          <p className="lg:text-[1.8rem] text-lg font-thin">
             You can also hit me up in any of this places 👋🏻
           </p>
           <div className="flex gap-5 pt-6 lg:pt-12">
@@ -175,7 +204,7 @@ function Contact() {
         </div>
 
         <div className="flex gap-[2rem] w-full">
-          <div className="border w-full lg:w-fit  mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[4rem] p-[2rem] ">
+          <div className="border w-full lg:w-fit mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
             <p className="text-[24px]">Find me at:</p>
             <div className="flex gap-8 py-4">
               <a
@@ -190,7 +219,7 @@ function Contact() {
                 href="https://github.com/Sivabalan-19"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)]  transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
               >
                 <GitHubIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
               </a>
@@ -206,10 +235,10 @@ function Contact() {
           </div>
         </div>
       </div>
-      {/* Toastify Container */}
-      {/* <ToastContainer position="top-center" autoClose={4000} /> */}
+
+      <ToastContainer position="top-center" autoClose={4000} />
     </div>
   );
-}
+};
 
 export default Contact;

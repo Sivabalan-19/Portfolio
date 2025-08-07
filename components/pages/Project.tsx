@@ -2,26 +2,25 @@
 
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { projects } from "../../app/json/index";
-
-// interface Project {
-//   projectName: string;
-//   description: string;
-//   stacksUsed: string[];
-//   gitHubLink: string;
-//   liveLink: string;
-//   image: StaticImageData;
-// }
-
-// interface ProjectCardProps {
-//   project: Project;
-// }
+import { useRouter } from "next/navigation";
+import { projects } from "@/app/json";
 
 function ProjectCard({ project }: { project: any }) {
+  const router = useRouter();
+
+  const handleProjectClick = () => {
+    // Navigate to project details page using project name as slug
+    const projectSlug = project.projectName.toLowerCase().replace(/\s+/g, "-");
+    router.push(`/projects/${projectSlug}`);
+  };
+
   return (
     <div className="border border-white/50 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all flex flex-col">
-      {/* Project image */}
-      <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden">
+      {/* Project image - clickable */}
+      <div
+        className="relative w-full h-48 mb-4 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform"
+        // onClick={handleProjectClick}
+      >
         <Image
           src={project.image}
           alt={`${project.projectName} Screenshot`}
@@ -30,10 +29,17 @@ function ProjectCard({ project }: { project: any }) {
           className="rounded-xl"
           priority
         />
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span className="text-white font-semibold">View Details</span>
+        </div>
       </div>
 
       {/* Text content */}
-      <h2 className="text-gray-100 text-xl font-bold mb-2">
+      <h2
+        className="text-gray-100 text-xl font-bold mb-2 cursor-pointer hover:text-[#3dcf91] transition-colors"
+        onClick={handleProjectClick}
+      >
         {project.projectName}
       </h2>
       <p className="text-gray-300 mb-4">{project.description}</p>
@@ -58,6 +64,7 @@ function ProjectCard({ project }: { project: any }) {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap"
+          onClick={(e) => e.stopPropagation()}
         >
           <Github size={18} className="text-[#3dcf91]" /> GitHub
         </a>
@@ -66,6 +73,7 @@ function ProjectCard({ project }: { project: any }) {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap"
+          onClick={(e) => e.stopPropagation()}
         >
           <ExternalLink size={18} className="text-[#3dcf91]" /> Live Demo
         </a>

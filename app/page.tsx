@@ -5,9 +5,10 @@ import Contact from "@/components/pages/Contact";
 import Project from "@/components/pages/Project";
 import { ToastContainer } from "react-toastify";
 import Homes from "../components/pages/Home";
+import ProjectDetails from "@/components/pages/Project";
 export default function Home() {
   return (
-    <div className="text-white h-full">
+    <div className="text-white h-full font-sans">
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -26,7 +27,7 @@ export default function Home() {
       </section>
 
       <section id="project">
-        <Project />
+        <ProjectDetails />
       </section>
 
       <section id="about" className="">
