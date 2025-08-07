@@ -5,6 +5,7 @@ import { languages, tools } from "../../app/json/index";
 import { InfiniteSkillScroller } from "../ui/infinite-moving-cards";
 import { LinkPreview } from "../ui/link-preview";
 import Crayond from "../../public/assets/crayon.png";
+import Profile_photo from "../../public/assets/profile-photo.jpg";
 
 function About() {
   return (
@@ -26,7 +27,6 @@ function About() {
           Are you looking to bring your digital vision to life or seeking a
           dedicated developer to join your team? Let's connect and explore how
           we can create something extraordinary together.
-          I completed a one-year trainee role at{" "}
           {/* <LinkPreview
             url="https://www.crayond.com/"
             className="text-[#3dcf91]"
@@ -49,11 +49,15 @@ function About() {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <div className="w-[200px] h-[200px] bg-gray-800 rounded-full flex items-center justify-center text-white text-4xl">
+          <div className="w-[260px] h-[260px] rounded-full flex items-center justify-center text-white text-4xl">
             {/* <Image src={Crayond} alt="Crayon'd" /> */}
-            <a className="w-[200px] h-[200px] bg-gray-800 rounded-full flex items-center justify-center text-white text-4xl">
-         👨‍💻
-          </a>
+            <a className="rounded-full flex items-center justify-center text-white text-4xl">
+              <Image
+                src={Profile_photo}
+                alt="Profile Photo"
+                className="rounded-full"
+              />
+            </a>
           </div>
         </div>
 
