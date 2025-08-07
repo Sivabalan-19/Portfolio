@@ -19,7 +19,7 @@ function ProjectCard({ project }: { project: any }) {
       {/* Project image - clickable */}
       <div
         className="relative w-full h-48 mb-4 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform"
-        onClick={handleProjectClick}
+        // onClick={handleProjectClick}
       >
         <Image
           src={project.image}

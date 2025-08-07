@@ -5,309 +5,259 @@ import {
   ExternalLink,
   Github,
   Calendar,
-  User,
-  Code,
-  Eye,
-  Star,
-  Zap,
+  Tag,
+  CheckCircle,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { projects } from "../../json/index";
+import { useState } from "react";
 
-interface ProjectDetailsProps {
-  params: {
-    projectName: string;
-  };
+// Mock photo import - replace with your actual photo import
+const photo = "/api/placeholder/600/400";
+
+// Define the project type
+interface Project {
+  projectName: string;
+  description: string;
+  longDescription: string;
+  stacksUsed: string[];
+  gitHubLink: string;
+  liveLink: string;
+  image: string;
+  additionalImages: string[];
+  features: string[];
+  completionDate: string;
+  category: string;
 }
 
-export default function ProjectDetails({ params }: ProjectDetailsProps) {
+interface ProjectDetailPageProps {
+  project: Project;
+  onGoBack?: () => void;
+}
+
+function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
   const router = useRouter();
-  const projectName = params.projectName;
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  // Find the project by name slug
-  const project = projects.find(
-    (p) => p.projectName.toLowerCase().replace(/\s+/g, "-") === projectName
-  );
+  const handleGoBack = () => {
+    if (onGoBack) {
+      onGoBack();
+    } else {
+      router.push("/projects");
+    }
+  };
 
-
-  if (!project) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-100 mb-4">
-            Project Not Found
-          </h1>
-          <button
-            onClick={() => router.back()}
-            className="bg-[#3dcf91] hover:bg-[#3dcf91]/80 text-white px-6 py-3 rounded-lg transition-colors"
-          >
-            Go Back
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const allImages = [project.image, ...project.additionalImages];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Navigation */}
-      <nav className="border-b border-white/10 bg-gray-900/90 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 lg:px-20 py-4">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-300 hover:text-[#3dcf91] transition-colors"
-          >
-            <ArrowLeft size={20} />
-            Back to Projects
-          </button>
-        </div>
-      </nav>
+    <div className="min-h-screen py-8 px-4 lg:px-20">
+      <div className="max-w-6xl mx-auto">
+        {/* Back Button */}
+        <button
+          onClick={handleGoBack}
+          className="inline-flex items-center gap-2 text-gray-300 hover:text-[#3dcf91] mb-8 transition-colors"
+        >
+          <ArrowLeft size={20} />
+          Back to Projects
+        </button>
 
-      {/* Hero Section */}
-      <div className="relative h-96 overflow-hidden">
-        <Image
-          src={project.image}
-          alt={`${project.projectName} Hero`}
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent">
-          <div className="max-w-7xl mx-auto px-4 lg:px-20 h-full flex items-end pb-12">
+        {/* Project Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-100 mb-4">
+            {project.projectName}
+          </h1>
+          <div className="flex flex-wrap gap-4 items-center mb-4">
+            <div className="flex items-center gap-2 text-gray-300">
+              <Calendar size={16} />
+              <span>Completed: {project.completionDate}</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-300">
+              <Tag size={16} />
+              <span>{project.category}</span>
+            </div>
+          </div>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            {project.longDescription}
+          </p>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+          {/* Image Gallery */}
+          <div className="space-y-4">
+            <div className="relative w-full h-80 rounded-xl overflow-hidden">
+              <Image
+                src={allImages[selectedImageIndex]}
+                alt={`${project.projectName} Screenshot ${selectedImageIndex + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-xl"
+                priority
+              />
+            </div>
+
+            {/* Thumbnail Navigation */}
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {allImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
+                    selectedImageIndex === index
+                      ? "border-[#3dcf91] opacity-100"
+                      : "border-gray-600 opacity-60 hover:opacity-80"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`Thumbnail ${index + 1}`}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-lg"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Project Details */}
+          <div className="space-y-6">
+            {/* Tech Stack */}
             <div>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-4 text-gray-100">
-                {project.projectName}
-              </h1>
-              <p className="text-xl text-gray-300 max-w-2xl">
+              <h3 className="text-xl font-semibold text-gray-100 mb-3">
+                Technologies Used
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {project.stacksUsed.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="bg-[#3dcf91]/10 text-[#3dcf91] border border-[#3dcf91] px-4 py-2 rounded-lg font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Project Links */}
+            <div>
+              <h3 className="text-xl font-semibold text-gray-100 mb-3">
+                Project Links
+              </h3>
+              <div className="flex gap-4">
+                <a
+                  href={project.gitHubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white rounded-lg px-6 py-3 transition-colors duration-300"
+                >
+                  <Github size={20} className="text-[#3dcf91]" />
+                  View Code
+                </a>
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#3dcf91] hover:bg-[#3dcf91]/80 font-bold text-white rounded-lg px-6 py-3 transition-colors duration-300"
+                >
+                  <ExternalLink size={20} />
+                  Live Demo
+                </a>
+              </div>
+            </div>
+
+            {/* Project Info Card */}
+            <div className="bg-[rgba(55,56,56,0.3)] border border-white/10 rounded-xl p-6">
+              <h3 className="text-xl font-semibold text-gray-100 mb-3">
+                Project Overview
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
                 {project.description}
               </p>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-20 py-16">
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            {/* Project Overview */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-100 mb-6 flex items-center gap-2">
-                <Eye className="text-[#3dcf91]" size={24} />
-                Project Overview
-              </h2>
-              <div className="bg-gray-800/50 border border-white/10 rounded-2xl p-6">
-                <p className="text-gray-300 leading-relaxed text-lg mb-6">
-                  {project.longDescription || project.description}
-                </p>
-
-                {/* Additional project details */}
-                <div className="pt-6 border-t border-white/10">
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">
-                    About this project
-                  </h3>
-                  <p className="text-gray-300">
-                    This project demonstrates modern web development practices
-                    using {project.stacksUsed.slice(0, -1).join(", ")}
-                    {project.stacksUsed.length > 1
-                      ? ` and ${project.stacksUsed.slice(-1)}`
-                      : project.stacksUsed[0]}
-                    . It showcases responsive design, clean code architecture,
-                    and user-friendly interface design.
-                  </p>
-                </div>
+        {/* Features Section */}
+        <div className="bg-[rgba(55,56,56,0.3)] border border-white/10 rounded-xl p-6 mb-8">
+          <h3 className="text-2xl font-semibold text-gray-100 mb-6 flex items-center gap-2">
+            <CheckCircle className="text-[#3dcf91]" size={24} />
+            Key Features
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {project.features.map((feature, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle
+                  className="text-[#3dcf91] mt-0.5 flex-shrink-0"
+                  size={16}
+                />
+                <span className="text-gray-300">{feature}</span>
               </div>
-            </section>
+            ))}
+          </div>
+        </div>
 
-            {/* Technologies Used */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-100 mb-6 flex items-center gap-2">
-                <Code className="text-[#3dcf91]" size={24} />
-                Technologies Used
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {project.stacksUsed.map((tech: string, index: number) => (
-                  <div
-                    key={index}
-                    className="bg-[#3dcf91]/10 border border-[#3dcf91]/30 rounded-lg p-4 text-center hover:bg-[#3dcf91]/20 transition-colors group"
-                  >
-                    <span className="text-[#3dcf91] font-medium group-hover:text-[#3dcf91] transition-colors">
-                      {tech}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Project Preview */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-100 mb-6">
-                Project Preview
-              </h2>
-              <div className="grid gap-6">
-                {/* Main project image */}
-                <div
-                  className="relative h-96 rounded-2xl overflow-hidden group cursor-pointer"
-                  onClick={() => window.open(project.liveLink, "_blank")}
-                >
-                  <Image
-                    src={project.image}
-                    alt={`${project.projectName} Preview`}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-2xl group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4 text-center">
-                      <p className="text-white text-sm">
-                        Click to view live demo
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project showcase cards */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-gray-800/50 border border-white/10 rounded-xl p-6">
-                    <h4 className="text-lg font-semibold text-gray-100 mb-3 flex items-center gap-2">
-                      <Star className="text-[#3dcf91]" size={20} />
-                      Key Highlights
-                    </h4>
-                    <ul className="space-y-2 text-gray-300">
-                      <li className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-[#3dcf91] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Modern and responsive design</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-[#3dcf91] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Clean and maintainable code</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-[#3dcf91] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Optimized performance</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-gray-800/50 border border-white/10 rounded-xl p-6">
-                    <h4 className="text-lg font-semibold text-gray-100 mb-3 flex items-center gap-2">
-                      <Zap className="text-[#3dcf91]" size={20} />
-                      Performance
-                    </h4>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-300">Loading Speed</span>
-                        <div className="flex items-center gap-2">
-                          <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
-                            <div className="w-4/5 h-full bg-[#3dcf91] rounded-full"></div>
-                          </div>
-                          <span className="text-sm text-gray-400">Fast</span>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-300">Mobile Friendly</span>
-                        <div className="flex items-center gap-2">
-                          <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
-                            <div className="w-full h-full bg-[#3dcf91] rounded-full"></div>
-                          </div>
-                          <span className="text-sm text-gray-400">100%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Features */}
-            {project.features && (
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-100 mb-6">
-                  Key Features
-                </h2>
-                <div className="grid gap-4">
-                  {project.features.map((feature: string, index: number) => (
-                    <div
-                      key={index}
-                      className="bg-gray-800/50 border border-white/10 rounded-lg p-4 flex items-start gap-3 hover:bg-gray-800/70 transition-colors"
-                    >
-                      <div className="w-2 h-2 bg-[#3dcf91] rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
+        {/* Additional Information */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-[rgba(55,56,56,0.3)] border border-white/10 rounded-xl p-6">
+            <h3 className="text-xl font-semibold text-gray-100 mb-3">
+              Development Process
+            </h3>
+            <p className="text-gray-300 leading-relaxed">
+              This project was built using modern web development practices with
+              a focus on performance, accessibility, and user experience. The
+              development process included thorough planning, iterative
+              development, and comprehensive testing to ensure a robust final
+              product.
+            </p>
           </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-800/50 border border-white/10 rounded-2xl p-6 sticky top-24">
-              <h3 className="text-xl font-bold text-gray-100 mb-6">
-                Project Details
-              </h3>
-
-              {/* Project Info */}
-              <div className="space-y-4 mb-8">
-                {project.completionDate && (
-                  <div className="flex items-center gap-3">
-                    <Calendar className="text-[#3dcf91]" size={20} />
-                    <div>
-                      <p className="text-gray-400 text-sm">Completed</p>
-                      <p className="text-gray-200">{project.completionDate}</p>
-                    </div>
-                  </div>
-                )}
-
-                {project.category && (
-                  <div className="flex items-center gap-3">
-                    <User className="text-[#3dcf91]" size={20} />
-                    <div>
-                      <p className="text-gray-400 text-sm">Category</p>
-                      <p className="text-gray-200">{project.category}</p>
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex items-center gap-3">
-                  <Code className="text-[#3dcf91]" size={20} />
-                  <div>
-                    <p className="text-gray-400 text-sm">Tech Stack</p>
-                    <p className="text-gray-200">
-                      {project.stacksUsed.length} Technologies
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#3dcf91] hover:bg-[#3dcf91]/80 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
-                >
-                  <ExternalLink size={18} />
-                  Live Demo
-                </a>
-
-                <a
-                  href={project.gitHubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
-                >
-                  <Github size={18} />
-                  View Code
-                </a>
-              </div>
-            </div>
+          <div className="bg-[rgba(55,56,56,0.3)] border border-white/10 rounded-xl p-6">
+            <h3 className="text-xl font-semibold text-gray-100 mb-3">
+              Challenges & Solutions
+            </h3>
+            <p className="text-gray-300 leading-relaxed">
+              During development, various challenges were encountered and solved
+              through careful research and implementation of best practices. The
+              final solution demonstrates effective problem-solving and
+              attention to detail.
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+// Demo component with sample data
+export default function ProjectDetailDemo() {
+  // Sample project data for demonstration
+  const sampleProject = {
+    projectName: "Portfolio Website",
+    description:
+      "A personal portfolio website to showcase my skills and projects with modern design and smooth animations.",
+    longDescription:
+      "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features include smooth scrolling, dark mode, project showcases, contact forms, and optimized performance. The site is fully responsive and includes animations that enhance user experience without compromising loading speed.",
+    stacksUsed: ["React", "Tailwind CSS", "Next.js"],
+    gitHubLink: "https://github.com/username/portfolio-website",
+    liveLink: "https://username.github.io/portfolio-website",
+    image: photo,
+    additionalImages: [photo, photo, photo],
+    features: [
+      "Responsive design that works on all devices",
+      "Dark mode with smooth transitions",
+      "Smooth scrolling navigation",
+      "Contact form with email integration",
+      "Project showcase with filtering",
+      "SEO optimized with meta tags",
+      "Fast loading with Next.js optimization",
+    ],
+    completionDate: "January 2025",
+    category: "Frontend Development",
+  };
+
+  return <ProjectDetailPage project={sampleProject} />;
+}
+
+// Export the main component for use in your app
+export { ProjectDetailPage };
