@@ -15,44 +15,44 @@ function Homes() {
     },
   ];
   return (
-    <div className="h-[90vh]  flex items-center justify-center px-4">
-      <div className="w-full max-w-5xl relative  z-10 flex flex-col items-center sm:items-start ">
-        <div className="tracking-wide w-full md:pl-11 lg:p-0">
-          <h3 className="text-[#3dcf91] uppercase text-[16px] sm:text-[1.1rem] font-bold mb-2 text-center sm:text-left">
+    <div className="min-h-[100vh] sm:min-h-[90vh] flex items-center justify-center px-4 py-8 sm:py-12 md:py-0">
+      <div className="w-full max-w-6xl relative z-10 flex flex-col items-center sm:items-start">
+        <div className="tracking-wide w-full px-2 xs:px-4 sm:px-6 md:pl-11 lg:px-8 xl:px-0">
+          <h3 className="text-[#3dcf91] uppercase text-sm xs:text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-4 text-center sm:text-left">
             Hi There!, I'm-
           </h3>
 
-          <div className="text-[2.2rem] sm:text-[4rem] md:text-[5rem] font-bold mb-6 text-center sm:text-left leading-tight break-words">
+          <div className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight break-words">
             <Typing />
           </div>
 
-          <h3 className="font-bold text-sm sm:text-[1.2rem] text-[rgba(204,204,204,0.65)] uppercase tracking-wide mb-6 text-center sm:text-left">
+          <h3 className="font-bold text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-[rgba(204,204,204,0.65)] uppercase tracking-wide mb-4 sm:mb-6 text-center sm:text-left">
             I am a <span className="text-white">Front End Developer</span>
             <br className="hidden sm:block" />
           </h3>
 
-          <div className="mt-4 text-center sm:text-left">
-            <p className="mb-4 text-sm sm:text-base font-medium text-[rgba(204,204,204,0.65)]">
+          <div className="mt-2 sm:mt-4 text-center sm:text-left">
+            <p className="mb-4 sm:mb-6 text-xs xs:text-sm sm:text-base md:text-lg font-medium text-[rgba(204,204,204,0.65)] max-w-2xl mx-auto sm:mx-0">
               Currently specializing in Frontend (Next.js, React)
             </p>
 
-            <div className="flex  items-center sm:items-start justify-center sm:justify-start gap-4 pb-10">
+            <div className="flex flex-col xs:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 sm:gap-4 pb-6 sm:pb-10">
               <a
                 href="mailto:pmsiva.1906@gmail.com"
-                className="inline-flex items-center gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[15px] rounded-[10px] px-8 py-[12px] min-w-[140px] justify-center transition-colors duration-300"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-xs xs:text-sm sm:text-base rounded-lg sm:rounded-xl px-6 sm:px-8 py-3 sm:py-4 min-w-[120px] sm:min-w-[140px] justify-center transition-colors duration-300 w-full xs:w-auto"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Mail size={20} className="text-[#3dcf91]" /> Email
+                <Mail size={16} className="text-[#3dcf91] sm:w-5 sm:h-5" /> Email
               </a>
 
               <a
                 href="https://github.com/Cruz3196"
-                className="inline-flex items-center gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[15px] rounded-[10px] px-8 py-[12px] min-w-[140px] justify-center transition-colors duration-300"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-xs xs:text-sm sm:text-base rounded-lg sm:rounded-xl px-6 sm:px-8 py-3 sm:py-4 min-w-[120px] sm:min-w-[140px] justify-center transition-colors duration-300 w-full xs:w-auto"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FileText size={20} className="text-[#3dcf91]" /> Resume
+                <FileText size={16} className="text-[#3dcf91] sm:w-5 sm:h-5" /> Resume
               </a>
             </div>
           </div>
