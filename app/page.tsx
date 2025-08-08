@@ -8,7 +8,7 @@ import Homes from "../components/pages/Home";
 import ProjectDetails from "@/components/pages/Project";
 export default function Home() {
   return (
-    <div className="text-white h-full font-sans">
+    <div className="text-white h-full font-sans relative z-20">
       <ToastContainer
         position="top-center"
         autoClose={2000}

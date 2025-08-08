@@ -32,8 +32,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
         <>
-          <ShootingStars />
-          <StarsBackground />
+          <ShootingStars className="z-10" />
+          <StarsBackground className="z-10" />
 
           {/* <AnimatedGridPattern
             duration={1}
@@ -48,11 +48,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* <RetroGrid /> */}
           {/* <ScrollProgress className="top-[65px]" /> */}
 
-          <div className="h-[9vh] w-full bg-transparent ">
+          <div className="h-[9vh] w-full bg-transparent z-10 relative">
             <Navbar />
           </div>
 
-          <div className="h-[91vh] overflow-y-scroll">{children}</div>
+          <div className="h-[91vh] overflow-y-scroll z-10 relative">{children}</div>
         </>
       </body>
     </html>
