@@ -14,7 +14,8 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        mono: ["var(--font-mono)"],
+        display: ["var(--font-display)"],
       },
       borderRadius: {
         lg: "var(--radius)",

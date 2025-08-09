@@ -67,7 +67,7 @@ export const InfiniteSkillScroller = ({
   `}
             >
               <div>{icon}</div>
-              <span className="mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-center">
+              <span className="mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-center font-sans">
                 {name}
               </span>
             </div>

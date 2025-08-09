@@ -9,8 +9,8 @@ import Profile_photo from "../../public/assets/profile-photo.jpg";
 
 function About() {
   return (
-    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12">
-      <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium mb-6 sm:mb-8 md:mb-12">
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12 font-sans">
+      <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-semibold mb-6 sm:mb-8 md:mb-12">
         Get to <span className="text-[#3dcf91]">Know Me</span>
         {/* <span className="text-[#3dcf91]">Internship</span> & Training */}
       </div>
@@ -43,7 +43,7 @@ function About() {
         </div>
       </div>
 
-      <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium mb-6 sm:mb-8 md:mb-12">
+      <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-semibold mb-6 sm:mb-8 md:mb-12">
         <span className="text-[#3dcf91]">Internship</span> & Training
       </div>
 

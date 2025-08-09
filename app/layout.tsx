@@ -3,6 +3,8 @@
 import { Navbar } from "@/components/navbar";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
+import { fontSans, fontMono, fontDisplay } from "@/config/fonts";
+import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { ReactNode, useEffect, useState } from "react";
 import "../styles/globals.css";
@@ -30,7 +32,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>Sivabalan | Portfolio</title>
       </head>
-      <body className="h-screen w-screen z-10 overflow-hidden bg-black  items-center justify-center">
+      <body className={cn(
+        "h-screen w-screen z-10 overflow-hidden bg-black items-center justify-center",
+        fontSans.variable,
+        fontMono.variable,
+        fontDisplay.variable
+      )}>
         <>
           <ShootingStars className="z-10" />
           <StarsBackground className="z-10" />
