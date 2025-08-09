@@ -79,7 +79,7 @@ export const Navbar = () => {
                 href={item.href}
                 onClick={(e) => handleScroll(e, item.href)}
                 className={clsx(
-                  "font-medium text-xs lg:text-sm px-3 py-1 rounded-full transition-all duration-300",
+                  "font-medium text-xs lg:text-sm px-3 py-1 rounded-full transition-all duration-300 font-sans",
                   activeSection === item.href.replace("#", "")
                     ? " bg-gray-800 backdrop-blur-md text-white shadow-md  "
                     : "text-white bg-transparent hover:bg-white/10"

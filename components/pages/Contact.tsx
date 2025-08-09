@@ -65,14 +65,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="px-4 lg:flex justify-start gap-8 lg:p-[5rem] font-mono">
+    <div className="px-4 lg:flex justify-start gap-8 lg:p-[5rem] font-sans">
       <form
         ref={formRef}
         onSubmit={sendEmail}
         className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
       >
-        <h2 className="text-4xl whitespace-pre-line font-thin">Let's talk</h2>
-        <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400">
+        <h2 className="text-4xl whitespace-pre-line font-display font-semibold">Let's talk</h2>
+        <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400 font-sans">
           I'm excited to apply my skills to your projects. Contact me to learn
           more about how I can contribute.
         </h6>
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
         {/* Split layout for email and name */}
         <div className="flex gap-4 pt-8">
           <div className="w-1/2">
-            <p className="pb-2">
+            <p className="pb-2 font-mono">
               <span className="text-[#3dcf91]">const</span> email =
             </p>
             <input
@@ -89,13 +89,13 @@ const Contact: React.FC = () => {
               value={email}
               onChange={handleEmailChange}
               required
-              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91]"
+              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
               placeholder="Enter your email"
             />
           </div>
 
           <div className="w-1/2">
-            <p className="pb-2">
+            <p className="pb-2 font-mono">
               <span className="text-[#3dcf91]">const</span> name =
             </p>
             <input
@@ -104,13 +104,13 @@ const Contact: React.FC = () => {
               value={name}
               onChange={handleNameChange}
               required
-              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] "
+              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
               placeholder="Enter your name"
             />
           </div>
         </div>
 
-        <p className="pt-6 pb-2">
+        <p className="pt-6 pb-2 font-mono">
           <span className="text-[#3dcf91]">const</span> message =
         </p>
         <textarea
@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
           onChange={handleMessageChange}
           rows={6}
           required
-          className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl resize-y min-h-[150px] max-h-[300px] transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91]"
+          className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl resize-y min-h-[150px] max-h-[300px] transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
           placeholder="Enter your message"
         />
 
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
 
       <div className="mt-5 lg:mt-0">
         <div className="border flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
-          <p className="lg:text-[1.8rem] text-lg font-thin">
+          <p className="lg:text-[1.8rem] text-lg font-display font-medium">
             You can also hit me up in any of this places 👋🏻
           </p>
           <div className="flex gap-5 pt-6 lg:pt-12">
@@ -180,13 +180,13 @@ const Contact: React.FC = () => {
               href="mailto:pmsiva.1906@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
             >
               <Mail size={22} className="text-white" />
             </a>
             <a
               href="tel:+91 9345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -194,7 +194,7 @@ const Contact: React.FC = () => {
             </a>
             <a
               href="https://wa.me/919345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300"
+              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
               target="_blank"
               rel="noopener noreferrer"
             >
