@@ -47,7 +47,7 @@ function Homes() {
               </a>
 
               <a
-                href="https://github.com/Cruz3196"
+                href="/resume/Resume.pdf"
                 className="inline-flex items-center gap-2 sm:gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-xs xs:text-sm sm:text-base rounded-lg sm:rounded-xl px-6 sm:px-8 py-3 sm:py-4 min-w-[120px] sm:min-w-[140px] justify-center transition-colors duration-300 w-full xs:w-auto font-sans"
                 target="_blank"
                 rel="noopener noreferrer"
