@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
     if (!formRef.current) return;
 
     setIsLoading(true);
-    
+
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
@@ -65,13 +65,15 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="px-4 lg:flex justify-start gap-8 lg:p-[5rem] font-sans">
+    <div className="px-4 h-full lg:flex justify-start gap-8 lg:p-[5rem] font-sans">
       <form
         ref={formRef}
         onSubmit={sendEmail}
         className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
       >
-        <h2 className="text-4xl whitespace-pre-line font-display font-semibold">Let's talk</h2>
+        <h2 className="text-4xl whitespace-pre-line font-display font-semibold">
+          Let's talk
+        </h2>
         <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400 font-sans">
           I'm excited to apply my skills to your projects. Contact me to learn
           more about how I can contribute.
@@ -128,7 +130,9 @@ const Contact: React.FC = () => {
             type="submit"
             disabled={isSent || isLoading}
             className={`w-35 text-black rounded-[4rem] bg-white inline-flex items-center justify-center px-4 py-2 transition-all ${
-              isSent || isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"
+              isSent || isLoading
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-200"
             }`}
           >
             {isLoading ? (
@@ -170,8 +174,8 @@ const Contact: React.FC = () => {
         </div>
       </form>
 
-      <div className="mt-5 lg:mt-0">
-        <div className="border flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
+      <div className="mt-5 lg:mt-0 h-full">
+        <div className="border h-1/2 flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
           <p className="lg:text-[1.8rem] text-lg font-display font-medium">
             You can also hit me up in any of this places 👋🏻
           </p>
@@ -203,7 +207,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex gap-[2rem] w-full">
+        <div className="flex h-1/2 gap-[2rem] w-full">
           <div className="border w-full lg:w-fit mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
             <p className="text-[24px]">Find me at:</p>
             <div className="flex gap-8 py-4">

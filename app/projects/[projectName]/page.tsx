@@ -1,19 +1,11 @@
 "use client";
 
-import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  Calendar,
-  Tag,
-  CheckCircle,
-} from "lucide-react";
+import { Calendar, CheckCircle, ExternalLink, Github, Tag } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 // Mock photo import - replace with your actual photo import
-const photo = "/api/placeholder/600/400";
 
 // Define the project type
 interface Project {
@@ -28,6 +20,8 @@ interface Project {
   features: string[];
   completionDate: string;
   category: string;
+  developmentProcess?: string;
+  challengesAndSolutions?: string;
 }
 
 interface ProjectDetailPageProps {
@@ -35,32 +29,15 @@ interface ProjectDetailPageProps {
   onGoBack?: () => void;
 }
 
-function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
+function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   const router = useRouter();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const handleGoBack = () => {
-    if (onGoBack) {
-      onGoBack();
-    } else {
-      router.push("/projects");
-    }
-  };
 
   const allImages = [project.image, ...project.additionalImages];
 
   return (
     <div className="min-h-screen py-8 px-4 lg:px-20">
       <div className="max-w-6xl mx-auto">
-        {/* Back Button */}
-        <button
-          onClick={handleGoBack}
-          className="inline-flex items-center gap-2 text-gray-300 hover:text-[#3dcf91] mb-8 transition-colors"
-        >
-          <ArrowLeft size={20} />
-          Back to Projects
-        </button>
-
         {/* Project Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-100 mb-4">
@@ -90,8 +67,8 @@ function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
                 src={allImages[selectedImageIndex]}
                 alt={`${project.projectName} Screenshot ${selectedImageIndex + 1}`}
                 layout="fill"
-                objectFit="cover"
-                className="rounded-xl"
+                objectFit="contain"
+                className=""
                 priority
               />
             </div>
@@ -204,11 +181,7 @@ function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
               Development Process
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              This project was built using modern web development practices with
-              a focus on performance, accessibility, and user experience. The
-              development process included thorough planning, iterative
-              development, and comprehensive testing to ensure a robust final
-              product.
+              {project?.developmentProcess}
             </p>
           </div>
 
@@ -217,10 +190,7 @@ function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
               Challenges & Solutions
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              During development, various challenges were encountered and solved
-              through careful research and implementation of best practices. The
-              final solution demonstrates effective problem-solving and
-              attention to detail.
+              {project?.challengesAndSolutions}
             </p>
           </div>
         </div>
@@ -230,31 +200,20 @@ function ProjectDetailPage({ project, onGoBack }: ProjectDetailPageProps) {
 }
 
 // Demo component with sample data
+import { projects } from "@/app/json";
+
+// Wrapper component: find the correct project from the single `projects` array
 export default function ProjectDetailDemo() {
-  // Sample project data for demonstration
-  const sampleProject = {
-    projectName: "Portfolio Website",
-    description:
-      "A personal portfolio website to showcase my skills and projects with modern design and smooth animations.",
-    longDescription:
-      "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features include smooth scrolling, dark mode, project showcases, contact forms, and optimized performance. The site is fully responsive and includes animations that enhance user experience without compromising loading speed.",
-    stacksUsed: ["React", "Tailwind CSS", "Next.js"],
-    gitHubLink: "https://github.com/username/portfolio-website",
-    liveLink: "https://username.github.io/portfolio-website",
-    image: photo,
-    additionalImages: [photo, photo, photo],
-    features: [
-      "Responsive design that works on all devices",
-      "Dark mode with smooth transitions",
-      "Smooth scrolling navigation",
-      "Contact form with email integration",
-      "Project showcase with filtering",
-      "SEO optimized with meta tags",
-      "Fast loading with Next.js optimization",
-    ],
-    completionDate: "January 2025",
-    category: "Frontend Development",
-  };
+  const params = useParams();
+  const router = useRouter();
+
+  // dynamic segment name is `projectName` (from folder [projectName])
+  const projectSlug = params?.projectName ?? "";
+
+  const sampleProject =
+    projects.find(
+      (p) => p.projectName.toLowerCase().replace(/\s+/g, "-") === projectSlug
+    ) || projects[0];
 
   return <ProjectDetailPage project={sampleProject} />;
 }

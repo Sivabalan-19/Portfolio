@@ -21,7 +21,12 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "react-icons/si";
-import photo from "../../public/assets/project.png";
+
+import photo1 from "../../public/assets/project/portfolio/image1.png";
+import photo2 from "../../public/assets/project/portfolio/image2.png";
+import photo3 from "../../public/assets/project/portfolio/image3.png";
+
+import photo1int from "../../public/assets/project/interview/image1.png";
 
 export const languages = [
   {
@@ -145,10 +150,10 @@ export const projects = [
     longDescription:
       "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features include smooth scrolling, dark mode, project showcases, contact forms, and optimized performance. The site is fully responsive and includes animations that enhance user experience without compromising loading speed.",
     stacksUsed: ["React", "Tailwind CSS", "Next.js"],
-    gitHubLink: "https://github.com/username/portfolio-website",
+    gitHubLink: "https://github.com/Sivabalan-19/Portfolio",
     liveLink: "https://username.github.io/portfolio-website",
-    image: photo,
-    additionalImages: [photo, photo, photo],
+    image: photo1,
+    additionalImages: [photo2, photo3],
     features: [
       "Responsive design that works on all devices",
       "Dark mode with smooth transitions",
@@ -162,29 +167,35 @@ export const projects = [
     category: "Frontend Development",
   },
   {
-    projectName: "E-commerce Store",
+    projectName: "Intview Scheduler",
     description:
-      "An online store for electronics with shopping cart, payment integration, and admin dashboard.",
+      "An online scheduling tool for interviews with calendar integration and user management.",
     longDescription:
-      "A full-featured e-commerce platform for electronics with secure payment processing, inventory management, and user authentication. Built with the MERN stack, it includes features like product filtering, user reviews, order tracking, and a comprehensive admin panel for managing products, orders, and customers.",
-    stacksUsed: ["React", "Node.js", "Express", "MongoDB"],
-    gitHubLink: "https://github.com/username/ecommerce-store",
-    liveLink: "https://ecommerce-store.example.com",
-    image: photo,
-    additionalImages: [photo, photo, photo],
+      "Intview Scheduler is a comprehensive scheduling tool designed for managing interviews efficiently. It features calendar integration, user authentication, and a responsive design. Built with the MERN stack, it allows users to create, update, and delete interview slots, send notifications, and manage candidates seamlessly.",
+    stacksUsed: ["Next.js", "Prisma", "PostgresQL", "Node.js", "LiveKit"],
+    gitHubLink: "https://github.com/username/intview-scheduler",
+    liveLink: "https://the-codemeet.vercel.app/",
+    image: photo1int,
+    additionalImages: [photo1int, photo1int],
     features: [
-      "User authentication and authorization",
-      "Product catalog with search and filtering",
-      "Shopping cart with persistent storage",
-      "Secure payment gateway integration",
-      "Order tracking and history",
-      "Admin dashboard for inventory management",
-      "Customer reviews and ratings system",
-      "Email notifications for orders",
-      "Responsive design for mobile shopping",
+      "Role-based authentication for Admin, Interviewer, and Candidate",
+      "Admin approval system for new users",
+      "Interview scheduling based on availability",
+      "Real-time video and audio communication using LiveKit",
+      "Built-in collaborative code editor with auto-evaluation",
+      "Automatic test case checking and result scoring",
+      "Interviewer feedback system with ratings and comments",
+      "Candidate onboarding with resume and skill upload",
+      "Admin dashboard for managing users and interviews",
+      "Interview history and performance tracking",
+      "Email or notification system for interview updates",
     ],
-    completionDate: "December 2024",
+    completionDate: "October 2025",
     category: "Full Stack Development",
+    developmentProcess:
+      "The development process involved thorough planning and iterative development using the MERN stack. Key features were prioritized to enhance user experience and functionality.",
+    challengesAndSolutions:
+      "One of the main challenges was implementing real-time communication and collaborative coding. This was addressed by integrating LiveKit for video/audio and building a custom code editor with auto-evaluation capabilities.",
   },
   {
     projectName: "Chat App",
@@ -195,8 +206,8 @@ export const projects = [
     stacksUsed: ["React", "Socket.io", "Node.js"],
     gitHubLink: "https://github.com/username/chat-app",
     liveLink: "https://chat-app.example.com",
-    image: photo,
-    additionalImages: [photo, photo, photo],
+    image: photo1,
+    additionalImages: [photo2, photo3],
     features: [
       "Real-time messaging with Socket.io",
       "Private messaging between users",
