@@ -37,7 +37,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
   return (
     <div className="min-h-screen py-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-3">
         {/* Project Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-100 mb-4">
