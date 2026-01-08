@@ -36,7 +36,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   const allImages = [project.image, ...project.additionalImages];
 
   return (
-    <div className="min-h-screen py-8 px-4 lg:px-20">
+    <div className="min-h-screen py-8">
       <div className="max-w-6xl mx-auto">
         {/* Project Header */}
         <div className="mb-8">

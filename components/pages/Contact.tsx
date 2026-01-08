@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="px-4 h-full lg:flex justify-start gap-8 lg:p-[5rem] font-sans">
+    <div className="px-4  flex flex-col lg:flex-row justify-start gap-8 md:p-[5rem] font-sans">
       <form
         ref={formRef}
         onSubmit={sendEmail}

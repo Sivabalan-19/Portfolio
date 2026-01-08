@@ -25,7 +25,6 @@ export default function Home() {
       <section id="home" className="h-full">
         <Homes />
       </section>
-
       <section id="project">
         <ProjectDetails />
       </section>
@@ -36,7 +35,7 @@ export default function Home() {
 
       <section id="contact" className="h-full">
         <Contact />
-      </section>
+      </section> 
     </div>
   );
 }
