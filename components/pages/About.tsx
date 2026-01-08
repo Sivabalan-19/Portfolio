@@ -5,7 +5,7 @@ import { languages, tools } from "../../app/json/index";
 import { InfiniteSkillScroller } from "../ui/infinite-moving-cards";
 import { LinkPreview } from "../ui/link-preview";
 import Crayond from "../../public/assets/crayon.png";
-import Profile_photo from "../../public/assets/profile-photo.jpg";
+import Profile_photo from "../../public/assets/img.jpg";
 
 function About() {
   return (
@@ -32,27 +32,27 @@ function About() {
         <div className="w-full lg:w-2/5 flex items-center justify-center order-1 lg:order-2">
           <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 xl:w-72 xl:h-72 rounded-full flex items-center justify-center text-white text-4xl">
             {/* <Image src={Crayond} alt="Crayon'd" /> */}
-            <a className="rounded-full flex items-center justify-center text-white text-4xl">
+            {/* <a className="rounded-full  flex items-center justify-center text-white text-4xl"> */}
               <Image
                 src={Profile_photo}
                 alt="Profile Photo"
                 className="rounded-full w-full h-full object-cover"
               />
-            </a>
+            {/* </a> */}
           </div>
         </div>
       </div>
 
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-semibold mb-6 sm:mb-8 md:mb-12">
-        <span className="text-[#3dcf91]">Internship</span> & Training
+        <span className="text-[#3dcf91] font-display">Internship</span> & Training
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 py-8 sm:py-10 md:py-12 max-w-screen-xl mx-auto">
-        <div className="w-full lg:w-3/5 text-sm sm:text-base md:text-lg lg:text-xl text-white text-justify">
+        <div className="w-full  lg:w-3/5 text-sm sm:text-base md:text-lg lg:text-xl text-white text-justify">
           I completed a one-year trainee role at{" "}
           <LinkPreview
             url="https://www.crayond.com/"
-            className="text-[#3dcf91]"
+            className="text-[#3dcf91] font-semibold"
           >
             Crayon’d
           </LinkPreview>
@@ -63,7 +63,7 @@ function About() {
           <br /> One of my key contributions was to{" "}
           <LinkPreview
             url="https://emtax.vercel.app/login"
-            className="text-[#3dcf91]"
+            className="text-[#3dcf91] font-semibold"
           >
             Emtax
           </LinkPreview>
@@ -82,8 +82,8 @@ function About() {
         </div>
       </div>
 
-      <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-6 sm:mb-8 md:mb-12">
-        What I <strong className="text-[#3dcf91]">Work</strong> With
+      <div className="text-center text-xl sm:text-2xl font-display md:text-3xl lg:text-4xl mb-6 sm:mb-8 md:mb-12">
+        What I <strong className="text-[#3dcf91] ">Work</strong> With
       </div>
 
       <div className="w-full flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
