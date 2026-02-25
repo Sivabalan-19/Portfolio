@@ -48,7 +48,7 @@ function Homes() {
               </a>
 
               <a
-                href="/resume/Resume.pdf"
+                href="/resume/resume.pdf"
                 className="inline-flex items-center gap-2 sm:gap-3 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-xs xs:text-sm sm:text-base rounded-lg px-4 py-3 min-w-40 justify-center font-sans"
                 target="_blank"
                 rel="noopener noreferrer"

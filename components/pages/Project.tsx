@@ -4,23 +4,15 @@ import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { projects } from "@/app/json";
+import SectionHeader from "../section-header";
 
 function ProjectCard({ project }: { project: any }) {
   const router = useRouter();
 
-  const handleProjectClick = () => {
-    // Navigate to project details page using project name as slug
-    const projectSlug = project.projectName.toLowerCase().replace(/\s+/g, "-");
-    router.push(`/projects/${projectSlug}`);
-  };
-
   return (
     <div className="border cursor-pointer border-white/50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all flex flex-col font-sans">
       {/* Project image - clickable */}
-      <div
-        className="relative w-full h-48 mb-4 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform"
-        onClick={handleProjectClick}
-      >
+      <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform">
         <Image
           src={project.image}
           alt={`${project.projectName} Screenshot`}
@@ -29,19 +21,10 @@ function ProjectCard({ project }: { project: any }) {
           className="rounded-xl"
           priority
         />
-        {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-          <span className="text-white font-semibold font-sans">
-            View Details
-          </span>
-        </div>
       </div>
 
       {/* Text content */}
-      <h2
-        className="text-gray-100 text-xl font-display font-bold mb-2 cursor-pointer hover:text-[#3dcf91] transition-colors"
-        onClick={handleProjectClick}
-      >
+      <h2 className="text-gray-100 text-xl font-display font-bold mb-2 cursor-pointer hover:text-[#3dcf91] transition-colors">
         {project.projectName}
       </h2>
       <p className="text-gray-300 mb-4 font-sans">{project.description}</p>
@@ -87,11 +70,9 @@ function ProjectCard({ project }: { project: any }) {
 export default function ProjectsList() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12 font-sans">
-      <div className="max-w-6xl">
-        <h1 className="text-gray-100 text-3xl font-display font-bold mb-10 text-center">
-          My <span className="text-[#3dcf91]">Projects</span>
-        </h1>
-        <div className="grid gap-8 sm:grid-cols-1 justify-between md:grid-cols-2 xl:grid-cols-3">
+      <div className="w-full">
+        <SectionHeader switch={true} title="Projects" className="mb-10" />
+        <div className="grid w-full gap-8 sm:grid-cols-1  justify-between md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}

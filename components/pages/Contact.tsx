@@ -1,6 +1,7 @@
 "use client";
 
 import emailjs from "@emailjs/browser";
+import { EmailJSResponseStatus } from "@emailjs/browser";
 import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
@@ -10,6 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import photo from "../../public/assets/image.png";
 import { GitHubIcon, LinkedInIcon } from "../icons";
+import SectionHeader from "../section-header";
 
 const Contact: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -18,21 +20,32 @@ const Contact: React.FC = () => {
   const [isSent, setIsSent] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     if (!formRef.current) return;
 
+    if (!serviceId || !templateId || !publicKey) {
+      toast.error("Email service is not configured. Please check env variables.", {
+        position: "top-center",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         formRef.current,
         {
-          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-        }
+          publicKey,
+        },
       );
 
       toast.success("Email sent successfully! 🎉", { position: "top-center" });
@@ -40,11 +53,26 @@ const Contact: React.FC = () => {
       setEmail("");
       setName("");
       setMessage("");
-    } catch (error) {
-      console.error("FAILED...", error);
-      toast.error("Failed to send email. Try again later.", {
-        position: "top-center",
-      });
+    } catch (error: unknown) {
+      if (error instanceof EmailJSResponseStatus && error.status === 412) {
+        console.error("EmailJS precondition failed", {
+          status: error.status,
+          text: error.text,
+          serviceId,
+          templateId,
+        });
+        toast.error(
+          "EmailJS rejected the request (412). Check Public Key, Service/Template IDs, and Allowed Origins in EmailJS dashboard.",
+          {
+            position: "top-center",
+          }
+        );
+      } else {
+        console.error("FAILED...", error);
+        toast.error("Failed to send email. Try again later.", {
+          position: "top-center",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -59,18 +87,20 @@ const Contact: React.FC = () => {
   };
 
   const handleMessageChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLTextAreaElement>,
   ): void => {
     setMessage(e.target.value);
   };
 
   return (
-    <div className="px-4  flex flex-col lg:flex-row justify-start gap-8 md:p-[5rem] font-sans">
-      <form
-        ref={formRef}
-        onSubmit={sendEmail}
-        className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
-      >
+    <div className="px-4 md:p-[5rem] font-sans">
+  
+      <div className="flex flex-col lg:flex-row justify-start gap-8">
+        <form
+          ref={formRef}
+          onSubmit={sendEmail}
+          className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
+        >
         <h2 className="text-4xl whitespace-pre-line font-display font-semibold">
           Let's talk
         </h2>
@@ -172,14 +202,14 @@ const Contact: React.FC = () => {
             )}
           </button>
         </div>
-      </form>
+        </form>
 
-      <div className="mt-5 lg:mt-0 h-full">
-        <div className="border h-1/2 flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
-          <p className="lg:text-[1.8rem] text-lg font-display font-medium">
-            You can also hit me up in any of this places 👋🏻
-          </p>
-          <div className="flex gap-5 pt-6 lg:pt-12">
+        <div className="mt-5 lg:mt-0 h-full">
+          <div className="border h-1/2 flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
+            <p className="lg:text-[1.8rem] text-lg font-display font-medium">
+              You can also hit me up in any of this places 👋🏻
+            </p>
+            <div className="flex gap-5 pt-6 lg:pt-12">
             <a
               href="mailto:pmsiva.1906@gmail.com"
               target="_blank"
@@ -204,13 +234,13 @@ const Contact: React.FC = () => {
             >
               <IoLogoWhatsapp size={22} className="text-white" />
             </a>
+            </div>
           </div>
-        </div>
 
-        <div className="flex h-1/2 gap-[2rem] w-full">
-          <div className="border w-full lg:w-fit mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
-            <p className="text-[24px]">Find me at:</p>
-            <div className="flex gap-8 py-4">
+          <div className="flex h-1/2 gap-[2rem] w-full">
+            <div className="border w-full lg:w-fit mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
+              <p className="text-[24px]">Find me at:</p>
+              <div className="flex gap-8 py-4">
               <a
                 href="https://www.linkedin.com/in/sivabalan1906/"
                 target="_blank"
@@ -219,23 +249,25 @@ const Contact: React.FC = () => {
               >
                 <LinkedInIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
               </a>
-              <a
-                href="https://github.com/Sivabalan-19"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
-              >
-                <GitHubIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
-              </a>
+                <a
+                  href="https://github.com/Sivabalan-19"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+                >
+                  <GitHubIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="border w-full hidden md:block lg:hidden xl:block mt-[2rem] bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
-            <Image
-              src={photo}
-              alt="not visible"
-              fill
-              style={{ objectFit: "cover" }}
-            />
+
+            <div className="border w-full hidden md:block lg:hidden xl:block mt-[2rem] bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
+              <Image
+                src={photo}
+                alt="not visible"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
           </div>
         </div>
       </div>

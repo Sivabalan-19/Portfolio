@@ -5,12 +5,9 @@ import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { fontDisplay, fontMono, fontSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import { ReactNode, useEffect, useState } from "react";
 import "../styles/globals.css";
-const VantaBackground = dynamic(() => import("../components/back"), {
-  ssr: false,
-});
+
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -43,19 +40,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <>
           <ShootingStars className="z-10" />
           <StarsBackground className="z-10" />
-
-          {/* <AnimatedGridPattern
-            duration={1}
-            width={30}
-            numSquares={20}
-            height={30}
-            repeatDelay={1}
-            maxOpacity={0.25}
-          /> */}
-          {/* <BackgroundBeams /> */}
-          {/* <VantaBackground /> */}
-          {/* <RetroGrid /> */}
-          {/* <ScrollProgress className="top-[65px]" /> */}
 
           <div className="h-[9vh] w-full bg-transparent z-10 relative">
             <Navbar />
