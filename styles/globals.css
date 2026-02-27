@@ -11,6 +11,14 @@
       transform: translate(calc(-50% - 0.5rem));
     }
   }
+  @keyframes blink-cursor {
+  0%, 49% {
+    opacity: 1;
+    }
+  50%, 100% {
+    opacity: 0;
+    }
+  }
 }
 @layer base {
   :root {
@@ -68,6 +76,7 @@
   }
   .theme {
     --animate-grid: grid 15s linear infinite;
+    --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
   }
 }
 
@@ -111,23 +120,14 @@ body {
   }
 }
 
-/* Chrome, Safari, Edge */
+/* Hide scrollbar across all browsers */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent; /* no track */
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #3dcf91 0%, #2bbf81 100%);
-  border-radius: 10px;
-  border: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2bbf81, #24a56f);
+html {
+  -ms-overflow-style: none; /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @keyframes blink {

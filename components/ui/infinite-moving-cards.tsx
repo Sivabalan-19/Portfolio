@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 export const InfiniteSkillScroller = ({
   direction = "left",
   speed = "fast",
-  pauseOnHover = true,
+  pauseOnHover = false,
   className,
   skills,
 }: {
@@ -75,6 +75,7 @@ export const InfiniteSkillScroller = ({
         ))}
       </ul>
 
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         @keyframes scroll {
           0% {

@@ -1,17 +1,21 @@
 "use client";
 import clsx from "clsx";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaCode, FaGithub, FaLinkedin } from "react-icons/fa";
+import Image from "next/image";
 import logo from "../public/assets/logo.png";
 
-export const Navbar = () => {
+interface NavbarProps {
+  showLogo?: boolean;
+}
+
+export const Navbar = ({ showLogo = true }: NavbarProps) => {
   const [activeSection, setActiveSection] = useState("home");
 
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "Project", href: "#project" },
     { label: "About", href: "#about" },
+    { label: "Project", href: "#project" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -60,14 +64,18 @@ export const Navbar = () => {
               onClick={(e) => handleScroll(e, "#home")}
               className="flex items-center pl-6 gap-2"
             >
-              <Image
-                src={logo}
-                alt="Logo"
-                width={45}
-                height={45}
-                priority
-                className="rounded-full"
-              />
+              <div
+                className="w-[45px] h-[45px] relative transition-opacity duration-300"
+                style={{ opacity: showLogo ? 1 : 0 }}
+              >
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  fill
+                  priority
+                  className="rounded-full object-contain"
+                />
+              </div>
             </a>
           </div>
 

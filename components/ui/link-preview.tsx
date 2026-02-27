@@ -77,7 +77,7 @@ export const LinkPreview = ({
     <>
       {isMounted ? (
         <div className="hidden">
-          <img src={src} width={width} height={height} alt="hidden image" />
+          <img src={src} width={width} height={height} alt="hidden preview" />
         </div>
       ) : null}
 
@@ -132,7 +132,7 @@ export const LinkPreview = ({
                     width={width}
                     height={height}
                     className="rounded-lg"
-                    alt="preview image"
+                    alt="site preview"
                   />
                 </a>
               </motion.div>
