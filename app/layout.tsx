@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
+import ScrollProgress from "@/components/ui/scroll-progress";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { fontDisplay, fontMono, fontSans } from "@/config/fonts";
@@ -164,6 +165,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <Navbar showLogo={phase === "ready"} />
             </div>
           )}
+
+          {/* ── Scroll progress bar ── */}
+          {phase === "ready" && <ScrollProgress />}
 
           {/* ── Page content: fades in when ready ── */}
           <AnimatePresence>

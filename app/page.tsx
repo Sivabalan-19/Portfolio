@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import About from "@/components/pages/About";
 import Contact from "@/components/pages/Contact";
+import Education from "@/components/pages/Education";
 import HorizontalScrollCarousel from "@/components/pages/Experience";
-import { /* SpinningText removed; loader moved to layout */ } from "@/components/ui/spinning-text";
+import { } from /* SpinningText removed; loader moved to layout */ "@/components/ui/spinning-text";
 import { ToastContainer } from "react-toastify";
 import Homes from "../components/pages/Home";
 import ProjectDetails from "../components/pages/Project";
@@ -42,6 +42,9 @@ export default function Home() {
           <HorizontalScrollCarousel />
         </section>
 
+        <section id="education">
+          <Education />
+        </section>
         <section id="contact" className="h-full">
           <Contact />
         </section>

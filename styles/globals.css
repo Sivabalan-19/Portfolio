@@ -120,23 +120,14 @@ body {
   }
 }
 
-/* Chrome, Safari, Edge */
+/* Hide scrollbar across all browsers */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent; /* no track */
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #3dcf91 0%, #2bbf81 100%);
-  border-radius: 10px;
-  border: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2bbf81, #24a56f);
+html {
+  -ms-overflow-style: none; /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @keyframes blink {

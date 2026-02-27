@@ -1,15 +1,15 @@
 "use client";
 
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
-import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
+import { CheckIcon, Mail, Send } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import photo from "../../public/assets/image.png";
-import { GitHubIcon, LinkedInIcon } from "../icons";
+import SectionHeader from "../section-header";
 
 const Contact: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -22,30 +22,26 @@ const Contact: React.FC = () => {
   const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-
   const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     if (!formRef.current) return;
 
     if (!serviceId || !templateId || !publicKey) {
-      toast.error("Email service is not configured. Please check env variables.", {
-        position: "top-center",
-      });
+      toast.error(
+        "Email service is not configured. Please check env variables.",
+        {
+          position: "top-center",
+        },
+      );
       return;
     }
 
     setIsLoading(true);
 
     try {
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        {
-          publicKey,
-        },
-      );
-
+      await emailjs.sendForm(serviceId, templateId, formRef.current, {
+        publicKey,
+      });
       toast.success("Email sent successfully! 🎉", { position: "top-center" });
       setIsSent(true);
       setEmail("");
@@ -61,9 +57,7 @@ const Contact: React.FC = () => {
         });
         toast.error(
           "EmailJS rejected the request (412). Check Public Key, Service/Template IDs, and Allowed Origins in EmailJS dashboard.",
-          {
-            position: "top-center",
-          }
+          { position: "top-center" },
         );
       } else {
         console.error("FAILED...", error);
@@ -76,197 +70,176 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setEmail(e.target.value);
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(e.target.value);
-  };
-
-  const handleMessageChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-  ): void => {
-    setMessage(e.target.value);
-  };
-
   return (
-    <div className="px-4 md:p-[5rem] font-sans">
-  
-      <div className="flex flex-col lg:flex-row justify-start gap-8">
-        <form
-          ref={formRef}
-          onSubmit={sendEmail}
-          className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
-        >
-        <h2 className="text-4xl whitespace-pre-line font-display font-semibold">
-          Let&apos;s talk
-        </h2>
-        <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400 font-sans">
-          I&apos;m excited to apply my skills to your projects. Contact me to learn
-          more about how I can contribute.
-        </h6>
+    <div className="w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-10 sm:py-14 md:py-20 font-sans flex flex-col justify-center">
+      <SectionHeader title="Contact" className="mb-10 sm:mb-20" />
 
-        {/* Split layout for email and name */}
-        <div className="flex gap-4 pt-8">
-          <div className="w-1/2">
-            <p className="pb-2 font-mono">
-              <span className="text-[#3dcf91]">const</span> email =
+      <div className="mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+          {/* ── Left: Simple Info ── */}
+          <div className="flex flex-col justify-center">
+            <h2 className="text-3xl sm:text-4xl font-bold font-display">
+              Let&apos;s talk<span className="text-[#3dcf91]">.</span>
+            </h2>
+            <p className="mt-3 text-sm text-white/40 leading-relaxed max-w-sm">
+              Have a question or want to work together? Feel free to reach out.
             </p>
-            <input
-              type="email"
-              name="user_email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
-              placeholder="Enter your email"
-            />
-          </div>
 
-          <div className="w-1/2">
-            <p className="pb-2 font-mono">
-              <span className="text-[#3dcf91]">const</span> name =
-            </p>
-            <input
-              type="text"
-              name="user_name"
-              value={name}
-              onChange={handleNameChange}
-              required
-              className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
-              placeholder="Enter your name"
-            />
-          </div>
-        </div>
-
-        <p className="pt-6 pb-2 font-mono">
-          <span className="text-[#3dcf91]">const</span> message =
-        </p>
-        <textarea
-          name="message"
-          value={message}
-          onChange={handleMessageChange}
-          rows={6}
-          required
-          className="w-full px-4 py-3 text-white placeholder-white/60 bg-[#2a2a2aa0] border border-gray-600 rounded-lg shadow-xl resize-y min-h-[150px] max-h-[300px] transition-all duration-200 hover:bg-[#2a2a2aa0] focus:bg-[#2a2a2aa0] focus:outline-none focus:ring-2 focus:ring-[#3dcf91] font-sans"
-          placeholder="Enter your message"
-        />
-
-        <div className="w-full flex justify-end mt-6">
-          <button
-            type="submit"
-            disabled={isSent || isLoading}
-            className={`w-35 text-black rounded-[4rem] bg-white inline-flex items-center justify-center px-4 py-2 transition-all ${
-              isSent || isLoading
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-gray-200"
-            }`}
-          >
-            {isLoading ? (
-              <span className="inline-flex items-center">
-                <svg
-                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Sending...
-              </span>
-            ) : isSent ? (
-              <span className="inline-flex items-center">
-                <CheckIcon className="mr-2 size-4" />
-                Email Sent
-              </span>
-            ) : (
-              <span className="group inline-flex items-center">
-                Send Email
-                <ChevronRightIcon className="ml-1 size-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            )}
-          </button>
-        </div>
-        </form>
-
-        <div className="mt-5 lg:mt-0 h-full">
-          <div className="border h-1/2 flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
-            <p className="lg:text-[1.8rem] text-lg font-display font-medium">
-              You can also hit me up in any of this places 👋🏻
-            </p>
-            <div className="flex gap-5 pt-6 lg:pt-12">
-            <a
-              href="mailto:pmsiva.1906@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
-            >
-              <Mail size={22} className="text-white" />
-            </a>
-            <a
-              href="tel:+91 9345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaPhoneAlt size={20} className="text-white" />
-            </a>
-            <a
-              href="https://wa.me/919345473169"
-              className="inline-flex items-center bg-[#3dcf91] hover:bg-[#3e9cb6] font-bold text-white text-[15px] rounded-full px-5 py-[12px] lg:min-w-[95px] justify-center transition-colors duration-300 font-sans"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IoLogoWhatsapp size={22} className="text-white" />
-            </a>
+            <div className="mt-8 flex flex-col gap-4">
+              <a
+                href="mailto:pmsiva.1906@gmail.com"
+                className="flex items-center gap-3 text-sm text-white/50 hover:text-[#3dcf91] transition-colors"
+              >
+                <Mail className="h-4 w-4 text-[#3dcf91]" />
+                pmsiva.1906@gmail.com
+              </a>
+              <a
+                href="tel:+919345473169"
+                className="flex items-center gap-3 text-sm text-white/50 hover:text-[#3dcf91] transition-colors"
+              >
+                <FaPhoneAlt className="h-3.5 w-3.5 text-[#3dcf91]" />
+                +91 93454 73169
+              </a>
+              <a
+                href="https://wa.me/919345473169"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-white/50 hover:text-[#25D366] transition-colors"
+              >
+                <IoLogoWhatsapp className="h-4 w-4 text-[#25D366]" />
+                WhatsApp
+              </a>
             </div>
-          </div>
 
-          <div className="flex h-1/2 gap-[2rem] w-full">
-            <div className="border w-full lg:w-fit mt-[2rem] flex flex-col bg-[#0b0b0b] rounded-[2.5rem] lg:rounded-[4rem] p-[2rem]">
-              <p className="text-[24px]">Find me at:</p>
-              <div className="flex gap-8 py-4">
+            <div className="mt-8 flex gap-3">
               <a
                 href="https://www.linkedin.com/in/sivabalan1906/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(10,102,194)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
+                className="h-9 w-9 flex items-center justify-center rounded-lg bg-white/[0.04] text-white/40 hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all"
               >
-                <LinkedInIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
+                <FaLinkedinIn className="h-4 w-4" />
               </a>
-                <a
-                  href="https://github.com/Sivabalan-19"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lg:w-[12rem] lg:h-[7rem] h-20 w-20 duration-300 bg-[rgb(1,4,9)] transition-all hover:opacity-70 outline rounded-[30px] p-4 flex items-center justify-center"
-                >
-                  <GitHubIcon className="text-white text-[2rem] lg:w-16 lg:h-16" />
-                </a>
+              <a
+                href="https://github.com/Sivabalan-19"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-9 w-9 flex items-center justify-center rounded-lg bg-white/[0.04] text-white/40 hover:text-white hover:bg-white/[0.08] transition-all"
+              >
+                <FaGithub className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* ── Right: Form ── */}
+          <form
+            ref={formRef}
+            onSubmit={sendEmail}
+            className="flex flex-col rounded-3xl bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8"
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
+              <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+              <span className="ml-3 text-xs text-white/20 font-mono">
+                contact.tsx
+              </span>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 mb-5">
+              <div className="relative">
+                <input
+                  type="text"
+                  name="user_name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  placeholder=" "
+                  className="peer w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 pt-6 pb-3 text-sm text-white outline-none transition-all focus:border-[#3dcf91]/40 focus:bg-white/[0.04] hover:border-white/15 font-sans"
+                />
+                <label className="pointer-events-none absolute left-5 top-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3dcf91]/60 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/25 peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-placeholder-shown:normal-case peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:text-[#3dcf91]/60">
+                  Name
+                </label>
+              </div>
+              <div className="relative">
+                <input
+                  type="email"
+                  name="user_email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder=" "
+                  className="peer w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 pt-6 pb-3 text-sm text-white outline-none transition-all focus:border-[#3dcf91]/40 focus:bg-white/[0.04] hover:border-white/15 font-sans"
+                />
+                <label className="pointer-events-none absolute left-5 top-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3dcf91]/60 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/25 peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-placeholder-shown:normal-case peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:text-[#3dcf91]/60">
+                  Email
+                </label>
               </div>
             </div>
 
-            <div className="border w-full hidden md:block lg:hidden xl:block mt-[2rem] bg-[#0b0b0b] rounded-[4rem] p-[2rem] relative overflow-hidden">
-              <Image
-                src={photo}
-                alt="not visible"
-                fill
-                style={{ objectFit: "cover" }}
+            <div className="relative flex-1 flex flex-col mb-5">
+              <textarea
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={6}
+                required
+                placeholder=" "
+                className="peer w-full flex-1 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 pt-6 pb-3 text-sm text-white outline-none transition-all focus:border-[#3dcf91]/40 focus:bg-white/[0.04] hover:border-white/15 resize-none font-sans"
               />
+              <label className="pointer-events-none absolute left-5 top-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3dcf91]/60 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/25 peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-placeholder-shown:normal-case peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:text-[#3dcf91]/60">
+                Message
+              </label>
             </div>
-          </div>
+
+            <button
+              type="submit"
+              disabled={isSent || isLoading}
+              className={`group w-full rounded-2xl py-4 text-sm font-bold tracking-wide transition-all ${
+                isSent
+                  ? "bg-[#3dcf91]/15 text-[#3dcf91] cursor-default border border-[#3dcf91]/20"
+                  : isLoading
+                    ? "bg-white/5 text-white/30 cursor-not-allowed border border-white/5"
+                    : "bg-[#3dcf91] text-black hover:shadow-[0_8px_40px_rgba(61,207,145,0.25)] hover:scale-[1.01] active:scale-[0.99] border border-transparent"
+              }`}
+            >
+              {isLoading ? (
+                <span className="inline-flex items-center justify-center gap-2">
+                  <svg
+                    className="animate-spin h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
+                  </svg>
+                  Sending...
+                </span>
+              ) : isSent ? (
+                <span className="inline-flex items-center justify-center gap-2">
+                  <CheckIcon className="h-4 w-4" />
+                  Message Sent
+                </span>
+              ) : (
+                <span className="inline-flex items-center justify-center gap-2">
+                  Send Message
+                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                </span>
+              )}
+            </button>
+          </form>
         </div>
       </div>
 
