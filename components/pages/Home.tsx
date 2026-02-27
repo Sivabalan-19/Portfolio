@@ -4,22 +4,12 @@ import { FileText, Mail } from "lucide-react";
 
 import { TypingAnimation } from "../ui/typing-animation";
 function Homes() {
-  const words = [
-    {
-      text: "Siva",
-      className: "text-white text-[2rem]",
-    },
-    {
-      text: "Balan",
-      className: "text-white text-[2rem]",
-    },
-  ];
   return (
     <div className="min-h-[100vh] sm:min-h-[90vh] flex items-center justify-start font-sans">
       <div className="w-full max-w-6xl relative z-10 flex flex-col items-center">
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12 font-sans">
           <h3 className="text-[#3dcf91] uppercase text-sm xs:text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-4 text-center sm:text-left font-sans">
-            Hi There!, I'm-
+            Hi There!, I&apos;m-
           </h3>
 
           <div className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight break-words">

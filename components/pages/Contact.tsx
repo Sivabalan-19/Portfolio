@@ -1,7 +1,6 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
-import { EmailJSResponseStatus } from "@emailjs/browser";
+import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 import { CheckIcon, ChevronRightIcon, Mail } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
@@ -11,7 +10,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import photo from "../../public/assets/image.png";
 import { GitHubIcon, LinkedInIcon } from "../icons";
-import SectionHeader from "../section-header";
 
 const Contact: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -102,10 +100,10 @@ const Contact: React.FC = () => {
           className="border w-full lg:w-6/12 bg-[#0b0b0b] lg:flex flex-col rounded-[2.5rem] lg:rounded-[4rem] p-[2rem] justify-start"
         >
         <h2 className="text-4xl whitespace-pre-line font-display font-semibold">
-          Let's talk
+          Let&apos;s talk
         </h2>
         <h6 className="lg:text-[1rem] text-sm whitespace-pre-line font-light pt-3 text-gray-400 font-sans">
-          I'm excited to apply my skills to your projects. Contact me to learn
+          I&apos;m excited to apply my skills to your projects. Contact me to learn
           more about how I can contribute.
         </h6>
 
