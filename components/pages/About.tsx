@@ -21,8 +21,8 @@ function About() {
           back-end technologies. <br />
           <br />
           Are you looking to bring your digital vision to life or seeking a
-          dedicated developer to join your team? Let&apos;s connect and explore how
-          we can create something extraordinary together.
+          dedicated developer to join your team? Let&apos;s connect and explore
+          how we can create something extraordinary together.
         </div>
 
         <div className="w-full lg:w-2/5 flex items-center justify-center order-1 lg:order-2">

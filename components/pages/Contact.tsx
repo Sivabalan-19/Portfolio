@@ -2,13 +2,11 @@
 
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 import { CheckIcon, Mail, Send } from "lucide-react";
-import Image from "next/image";
 import { FormEvent, useRef, useState } from "react";
 import { FaGithub, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import photo from "../../public/assets/image.png";
 import SectionHeader from "../section-header";
 
 const Contact: React.FC = () => {

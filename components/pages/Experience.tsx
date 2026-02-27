@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import Crayond from "../../public/assets/crayon.png";
 import ThinkuniLogo from "../ThinkuniLogo";
 import SectionHeader from "../section-header";

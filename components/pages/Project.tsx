@@ -1,9 +1,9 @@
 "use client";
 
+import { projects } from "@/app/json";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { projects } from "@/app/json";
 import SectionHeader from "../section-header";
 
 function ProjectCard({ project }: { project: any }) {

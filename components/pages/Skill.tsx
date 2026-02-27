@@ -7,7 +7,6 @@ import { InfiniteSkillScroller } from "../ui/infinite-moving-cards";
 export default function Skill() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12 font-sans">
-     
       <SectionHeader
         title="Skills"
         switch={true}
@@ -33,5 +32,3 @@ export default function Skill() {
     </div>
   );
 }
-
-
