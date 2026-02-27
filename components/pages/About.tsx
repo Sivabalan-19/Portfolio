@@ -41,50 +41,7 @@ function About() {
         </div>
       </div>
 
-      <SectionHeader title="Experience" className="mb-6 sm:mb-8 md:mb-12" />
-
-      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 py-8 sm:py-10 md:py-12 max-w-screen-xl mx-auto">
-        <div className="w-full  lg:w-3/5 text-sm sm:text-base md:text-lg lg:text-xl text-white text-justify">
-          I completed a one-year trainee role at{" "}
-          <LinkPreview
-            url="https://www.crayond.com/"
-            className="text-[#3dcf91] font-semibold"
-          >
-            Crayon’d
-          </LinkPreview>
-          , a product engineering company in Chennai. As a Frontend Developer, I
-          worked with React, Next.js, Tailwind CSS, and REST APIs to build
-          responsive web interfaces.
-          <br />
-          <br /> One of my key contributions was to{" "}
-          <LinkPreview
-            url="https://emtax.vercel.app/login"
-            className="text-[#3dcf91] font-semibold"
-          >
-            Emtax
-          </LinkPreview>
-          , a finance management app, where I developed UI screens based on
-          given designs and integrated them with APIs.
-        </div>
-
-        <div className="w-full lg:w-2/5 flex items-center justify-center">
-          <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 xl:w-60 xl:h-60 rounded-full flex items-center justify-center text-white text-4xl bg-white/10 backdrop-blur-sm">
-            <Image
-              src={Crayond}
-              alt="Crayon'd"
-              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 object-contain"
-            />
-          </div>
-        </div>
-      </div>
-
-      <SectionHeader
-        title="Skills"
-        switch={true}
-        className=" mb-6 sm:mb-8 md:mb-12"
-      />
-
-      <div className="w-full flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
+      <div className="mt-18 w-full flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
         <div className="w-full">
           <InfiniteSkillScroller
             direction="left"

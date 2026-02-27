@@ -6,8 +6,8 @@ import { StarsBackground } from "@/components/ui/stars-background";
 import { fontDisplay, fontMono, fontSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
 import { ReactNode, useEffect, useState } from "react";
+import { SpinningText } from "@/components/ui/spinning-text";
 import "../styles/globals.css";
-
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -15,11 +15,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // 3 seconds
+    }, 2500); // 4 seconds loader
 
     return () => clearTimeout(timer); // Clean up on unmount
   }, []);
@@ -31,23 +30,30 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body
         className={cn(
-          "h-screen w-screen z-10 overflow-hidden bg-black items-center justify-center",
+          "min-h-screen w-screen z-10 bg-black items-center justify-center",
           fontSans.variable,
           fontMono.variable,
-          fontDisplay.variable
+          fontDisplay.variable,
         )}
       >
         <>
           <ShootingStars className="z-10" />
           <StarsBackground className="z-10" />
 
-          <div className="h-[9vh] w-full bg-transparent z-10 relative">
-            <Navbar />
-          </div>
+          {/* Loader overlay */}
+          {loading ? (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+              <SpinningText>learn more • earn more • grow more •</SpinningText>
+            </div>
+          ) : (
+            <>
+              <div className="h-[9vh] w-full bg-transparent z-10 relative">
+                <Navbar />
+              </div>
 
-          <div className="h-[91vh] overflow-y-scroll max-xs:scrollbar-hide z-10 relative">
-            {children}
-          </div>
+              <div className={"relative z-10"}>{children}</div>
+            </>
+          )}
         </>
       </body>
     </html>

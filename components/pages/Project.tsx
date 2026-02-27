@@ -72,7 +72,7 @@ export default function ProjectsList() {
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-32 py-6 sm:py-8 md:py-12 font-sans">
       <div className="w-full">
         <SectionHeader switch={true} title="Projects" className="mb-10" />
-        <div className="grid w-full gap-8 sm:grid-cols-1  justify-between md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-6 grid w-full gap-8 sm:grid-cols-1  justify-between md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}

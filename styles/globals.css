@@ -11,6 +11,14 @@
       transform: translate(calc(-50% - 0.5rem));
     }
   }
+  @keyframes blink-cursor {
+  0%, 49% {
+    opacity: 1;
+    }
+  50%, 100% {
+    opacity: 0;
+    }
+  }
 }
 @layer base {
   :root {
@@ -68,6 +76,7 @@
   }
   .theme {
     --animate-grid: grid 15s linear infinite;
+    --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
   }
 }
 

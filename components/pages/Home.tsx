@@ -2,7 +2,7 @@
 
 import { FileText, Mail } from "lucide-react";
 
-import Typing from "../Type/Type";
+import { TypingAnimation } from "../ui/typing-animation";
 function Homes() {
   const words = [
     {
@@ -23,7 +23,7 @@ function Homes() {
           </h3>
 
           <div className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight break-words">
-            <Typing />
+            <TypingAnimation typeSpeed={100}>Sivabalan</TypingAnimation>
           </div>
 
           <h3 className="font-bold text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-[rgba(204,204,204,0.65)] uppercase tracking-wide mb-4 sm:mb-6 text-center sm:text-left font-sans">
