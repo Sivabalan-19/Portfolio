@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Crayond from "../../public/assets/crayon.png";
+import ThinkuniLogo from "../ThinkuniLogo";
 import SectionHeader from "../section-header";
 
 type Internship = {
@@ -22,22 +23,22 @@ const internships: Internship[] = [
     id: 1,
     index: "01",
     company: "Crayon'd",
-    role: "Frontend Developer Trainee",
-    duration: "June 2023 – June 2024  ·  1 year",
+    role: "Full-Stack Developer Intern",
+    duration: "Sep 2024 – Apr 2025  ·  7 months",
     description:
-      "Completed a one-year trainee role at Crayon'd, a product engineering company in Chennai. Worked with React, Next.js, Tailwind CSS, and REST APIs to build responsive web interfaces. A key contribution was to Emtax, a finance management app, where I developed UI screens based on designs and integrated them with APIs.",
+      "Completed the Crayon'd Full-Stack Development Program, actively participating in rigorous learning sessions and contributing to real-world product development. Worked with React, Next.js, Tailwind CSS, Node.js, and REST APIs to build responsive web interfaces. A key contribution was to Emtax, a finance management app, where I developed UI screens based on designs and integrated them with APIs.",
     logo: Crayond,
     accent: "#3dcf91",
   },
   {
     id: 2,
     index: "02",
-    company: "Crayon'd",
+    company: "Thinkuni",
     role: "Frontend Developer Intern",
-    duration: "Jan 2023 – May 2023  ·  5 months",
+    duration: "Sep 2025 – Current  ·  Ongoing",
     description:
-      "Joined Crayon'd as an intern and built the foundation for working in a product engineering environment. Contributed to internal tooling and UI components using React and Tailwind CSS, collaborating closely with designers and backend developers.",
-    logo: Crayond,
+      "Working at Thinkuni, an all-in-one platform that brings together career, education, entertainment, food, and fashion services. Building the frontend using React and Tailwind CSS to deliver a seamless user experience across all verticals of the platform.",
+    logo: "thinkuni",
     accent: "#3dcf91",
   },
 ];
@@ -110,11 +111,15 @@ const InternshipCard = ({ data }: { data: Internship }) => {
               boxShadow: `0 0 60px ${data.accent}18`,
             }}
           >
-            <Image
-              src={data.logo}
-              alt={data.company}
-              className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain"
-            />
+            {data.logo === "thinkuni" ? (
+              <ThinkuniLogo className="w-28 h-10 sm:w-36 sm:h-14 md:w-40 md:h-16" />
+            ) : (
+              <Image
+                src={data.logo}
+                alt={data.company}
+                className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain"
+              />
+            )}
           </div>
         </div>
       </div>
