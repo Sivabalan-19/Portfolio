@@ -95,7 +95,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     alt="Logo"
                     fill
                     priority
-                    className="rounded-full object-contain"
+                    className="object-contain"
                   />
                 </div>
                 {/* Progress bar below the logo */}
@@ -131,7 +131,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <span className="text-white/60 text-xs tracking-[0.25em] uppercase font-sans">
+                    <span className="text-white tracking-[0.25em] uppercase font-sans">
                       Scroll to explore
                     </span>
                     <motion.svg
