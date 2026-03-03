@@ -28,6 +28,8 @@ import photo3 from "../../public/assets/project/portfolio/image3.png";
 
 import photo1int from "../../public/assets/project/interview/image1.png";
 
+import photorp from "@/public/assets/project/rp/image.png";
+
 export const languages = [
   {
     name: "JavaScript",
@@ -144,16 +146,15 @@ export const tools = [
 
 export const projects = [
   {
-    projectName: "Portfolio Website",
+    projectName: "Event Manager",
     description:
-      "A personal portfolio website to showcase my skills and projects with modern design and smooth animations.",
+      "An event management application for creating and organizing events, schedules, and attendee management, replacing Google Forms.",
     longDescription:
       "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features include smooth scrolling, dark mode, project showcases, contact forms, and optimized performance. The site is fully responsive and includes animations that enhance user experience without compromising loading speed.",
-    stacksUsed: ["React", "Tailwind CSS", "Next.js"],
-    gitHubLink: "https://github.com/Sivabalan-19/Portfolio",
-    liveLink: "https://username.github.io/portfolio-website",
-    image: photo1,
-    additionalImages: [photo2, photo3],
+    stacksUsed: ["React", "Vanilla css", "Node.js", "Express.js", "MySQL"],
+    gitHubLink: "https://github.com/Sivabalan-19/Reward_Point_Vite",
+
+    image: photorp,
     features: [
       "Responsive design that works on all devices",
       "Dark mode with smooth transitions",
@@ -163,11 +164,11 @@ export const projects = [
       "SEO optimized with meta tags",
       "Fast loading with Next.js optimization",
     ],
-    completionDate: "January 2025",
+    completionDate: "November 2024",
     category: "Frontend Development",
   },
   {
-    projectName: "Intview Scheduler",
+    projectName: "Interview Scheduler",
     description:
       "An online scheduling tool for interviews with calendar integration and user management.",
     longDescription:

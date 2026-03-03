@@ -44,24 +44,28 @@ function ProjectCard({ project }: { project: any }) {
 
       {/* Footer Links */}
       <div className="flex gap-3 mt-auto pt-2 border-t border-[#3dcf91]/20">
-        <a
-          href={project.gitHubLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap font-sans"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Github size={18} className="text-[#3dcf91]" /> GitHub
-        </a>
-        <a
-          href={project.liveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap font-sans"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ExternalLink size={18} className="text-[#3dcf91]" /> Live Demo
-        </a>
+        {project.gitHubLink && (
+          <a
+            href={project.gitHubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap font-sans"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Github size={18} className="text-[#3dcf91]" /> GitHub
+          </a>
+        )}
+        {project.liveLink && (
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[rgba(55,56,56,0.5)] hover:bg-[rgba(55,56,56,0.7)] font-bold text-white text-[14px] rounded-[10px] px-4 py-3 w-full justify-center transition-colors duration-300 whitespace-nowrap font-sans"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ExternalLink size={18} className="text-[#3dcf91]" /> Live Demo
+          </a>
+        )}
       </div>
     </div>
   );
