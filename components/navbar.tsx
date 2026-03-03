@@ -65,7 +65,7 @@ export const Navbar = ({ showLogo = true }: NavbarProps) => {
               className="flex items-center pl-6 gap-2"
             >
               <div
-                className="w-[45px] h-[45px] relative transition-opacity duration-300"
+                className="w-[45px]  h-[45px] relative transition-opacity duration-300"
                 style={{ opacity: showLogo ? 1 : 0 }}
               >
                 <Image
@@ -73,7 +73,7 @@ export const Navbar = ({ showLogo = true }: NavbarProps) => {
                   alt="Logo"
                   fill
                   priority
-                  className="rounded-full object-contain"
+                  className="object-contain"
                 />
               </div>
             </a>

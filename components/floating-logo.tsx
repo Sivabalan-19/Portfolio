@@ -12,7 +12,10 @@ interface FloatingLogoProps {
   onAnimationComplete?: () => void;
 }
 
-export function FloatingLogo({ phase, onAnimationComplete }: FloatingLogoProps) {
+export function FloatingLogo({
+  phase,
+  onAnimationComplete,
+}: FloatingLogoProps) {
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
 
   useEffect(() => {
@@ -27,20 +30,26 @@ export function FloatingLogo({ phase, onAnimationComplete }: FloatingLogoProps) 
 
   const endX = 44;
   const endY = Math.max(0, (dims.h * 0.09 - 45) / 2);
-  const centerX = dims.w / 2 - 72;  // half of 144px logo
+  const centerX = dims.w / 2 - 72; // half of 144px logo
   const centerY = dims.h / 2 - 72;
 
   // center → navbar
   if (phase === "animating") {
     return (
       <motion.div
-        style={{ position: "fixed", top: 0, left: 0, zIndex: 200, pointerEvents: "none" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 200,
+          pointerEvents: "none",
+        }}
         initial={{ x: centerX, y: centerY, width: 144, height: 144 }}
         animate={{ x: endX, y: endY, width: 45, height: 45 }}
         transition={{ duration: 0.9, ease: "easeInOut" }}
         onAnimationComplete={onAnimationComplete}
       >
-        <Image src={logo} alt="Logo" fill priority className="rounded-full object-contain" />
+        <Image src={logo} alt="Logo" fill priority className="object-contain" />
       </motion.div>
     );
   }
@@ -59,7 +68,7 @@ export function FloatingLogo({ phase, onAnimationComplete }: FloatingLogoProps) 
         pointerEvents: "none",
       }}
     >
-      <Image src={logo} alt="Logo" fill priority className="rounded-full object-contain" />
+      <Image src={logo} alt="Logo" fill priority className=" object-contain" />
     </div>
   );
 }
