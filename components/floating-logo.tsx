@@ -12,10 +12,15 @@ interface FloatingLogoProps {
   onAnimationComplete?: () => void;
 }
 
+interface FloatingLogoPropsInternal extends FloatingLogoProps {
+  zIndex?: number;
+}
+
 export function FloatingLogo({
   phase,
   onAnimationComplete,
-}: FloatingLogoProps) {
+  zIndex = 200,
+}: FloatingLogoPropsInternal) {
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
 
   useEffect(() => {
@@ -33,7 +38,7 @@ export function FloatingLogo({
   const centerX = dims.w / 2 - 72; // half of 144px logo
   const centerY = dims.h / 2 - 72;
 
-  // center → navbar
+    // center → navbar
   if (phase === "animating") {
     return (
       <motion.div
@@ -41,7 +46,7 @@ export function FloatingLogo({
           position: "fixed",
           top: 0,
           left: 0,
-          zIndex: 200,
+            zIndex: zIndex,
           pointerEvents: "none",
         }}
         initial={{ x: centerX, y: centerY, width: 144, height: 144 }}
@@ -64,7 +69,7 @@ export function FloatingLogo({
         transform: `translate(${centerX}px, ${centerY}px)`,
         width: 144,
         height: 144,
-        zIndex: 200,
+        zIndex: zIndex,
         pointerEvents: "none",
       }}
     >
