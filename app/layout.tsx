@@ -291,24 +291,7 @@ function GlitchLoader({
                 <motion.div
                   className="absolute inset-0"
                   initial={{ x: 0 }}
-                  animate={{ x: [-4, 4, -2, 0] }}
                   transition={{ duration: 0.08 }}
-                  style={{
-                    filter: "hue-rotate(90deg) saturate(3)",
-                    opacity: 0.5,
-                  }}
-                >
-                  <Image src={logo} alt="" fill className="object-contain" />
-                </motion.div>
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ x: 0 }}
-                  animate={{ x: [3, -3, 1, 0] }}
-                  transition={{ duration: 0.08 }}
-                  style={{
-                    filter: "hue-rotate(200deg) saturate(3)",
-                    opacity: 0.5,
-                  }}
                 >
                   <Image src={logo} alt="" fill className="object-contain" />
                 </motion.div>
@@ -338,7 +321,6 @@ function GlitchLoader({
             />
           </div>
           <div className="flex items-center justify-center w-full">
-            
             <span className="text-white/60 text-xs font-mono tracking-widest">
               {progress}%
             </span>

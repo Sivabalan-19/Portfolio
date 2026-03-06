@@ -27,14 +27,11 @@ function About() {
 
         <div className="w-full lg:w-2/5 flex items-center justify-center order-1 lg:order-2">
           <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 xl:w-72 xl:h-72 rounded-full flex items-center justify-center text-white text-4xl">
-            {/* <Image src={Crayond} alt="Crayon'd" /> */}
-            {/* <a className="rounded-full  flex items-center justify-center text-white text-4xl"> */}
             <Image
               src={Profile_photo}
               alt="Profile Photo"
-              className="rounded-full w-full h-full object-cover"
+              className="rounded-full w-full h-full object-cover grayscale hover:grayscale-0 transition duration-300"
             />
-            {/* </a> */}
           </div>
         </div>
       </div>
